@@ -1,15 +1,23 @@
 -- Nicer filetree than NeoTreeWinSeparator
 -- If you want icons for diagnostic errors, you'll need to define them somewhere:
-local icons = require("config").icons.diagnostics
+local icons = require("config").icons
 
-vim.fn.sign_define("DiagnosticSignError",
-                   {text = icons.Error, texthl = "DiagnosticSignError"})
-vim.fn.sign_define("DiagnosticSignWarn",
-                   {text = icons.Warn, texthl = "DiagnosticSignWarn"})
-vim.fn.sign_define("DiagnosticSignInfo",
-                   {text = icons.Info, texthl = "DiagnosticSignInfo"})
-vim.fn.sign_define("DiagnosticSignHint",
-                   {text = icons.Hint, texthl = "DiagnosticSignHint"})
+vim.fn.sign_define("DiagnosticSignError", {
+    text = icons.diagnostics.Error,
+    texthl = "DiagnosticSignError"
+})
+vim.fn.sign_define("DiagnosticSignWarn", {
+    text = icons.diagnostics.Warn,
+    texthl = "DiagnosticSignWarn"
+})
+vim.fn.sign_define("DiagnosticSignInfo", {
+    text = icons.diagnostics.Info,
+    texthl = "DiagnosticSignInfo"
+})
+vim.fn.sign_define("DiagnosticSignHint", {
+    text = icons.diagnostics.Hint,
+    texthl = "DiagnosticSignHint"
+})
 
 return {
     -- file explorer
@@ -86,6 +94,19 @@ return {
                 }
             },
             default_component_configs = {
+                symbols = {
+                    -- Change type
+                    added = icons.git.added,
+                    deleted = icons.git.removed,
+                    modified = icons.git.modified,
+                    renamed = "󰁕",
+                    -- Status type
+                    untracked = "",
+                    ignored = "",
+                    unstaged = "",
+                    staged = "",
+                    conflict = ""
+                },
                 indent = {
                     with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
                     expander_collapsed = "",

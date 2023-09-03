@@ -1,3 +1,4 @@
+local icons = require("config").icons.git
 return {
     -- git signs highlights text that has changed since the list
     -- git commit, and also lets you interactively stage & unstage
@@ -7,9 +8,9 @@ return {
         event = {"BufReadPre", "BufNewFile"},
         opts = {
             signs = {
-                add = {text = "▎"},
+                add = {text = icons.add},
                 change = {text = "▎"},
-                delete = {text = ""},
+                delete = {text = icons.removed},
                 topdelete = {text = ""},
                 changedelete = {text = "▎"},
                 untracked = {text = "▎"}
