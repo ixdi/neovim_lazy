@@ -36,6 +36,6 @@ return {
             }
         }
     }, -- library used by other plugins
-    {"nvim-lua/plenary.nvim", lazy = true}, {"ixdi/nvim-meteor-snippets"},
+    {"nvim-lua/plenary.nvim", lazy = true}, {"ixdi/vim-meteor-snippets"},
     {'mg979/vim-visual-multi'}
 }
