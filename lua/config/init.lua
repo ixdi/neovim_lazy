@@ -54,6 +54,4 @@ M.icons = {
     }
 }
 
-M.renames = {["windwp/nvim-spectre"] = "nvim-pack/nvim-spectre"}
-
 return M

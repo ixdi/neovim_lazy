@@ -31,43 +31,32 @@ return {
         cmd = "Neotree",
         keys = {
             {
-                "<leader>fe",
-                function()
-                    require("neo-tree.command").execute({toggle = true})
-                end,
-                desc = "Explorer NeoTree (root dir)"
-            }, {
-                "<leader>fE",
+                "<leader>e",
                 function()
                     require("neo-tree.command").execute({
                         toggle = true,
-                        dir = vim.loop.cwd()
+                        reveal = true
                     })
                 end,
-                desc = "Explorer NeoTree (cwd)"
-            },
-            {
-                "<leader>e",
-                "<leader>fe",
-                desc = "Explorer NeoTree (root dir)",
-                remap = true
-            },
-            {
-                "<leader>E",
-                "<leader>fE",
-                desc = "Explorer NeoTree (cwd)",
-                remap = true
+                desc = "Explorer NeoTree (root dir)"
+            }, {
+                "<leader>eb",
+                function()
+                    require("neo-tree.sources.buffers.commands").execute({
+                        toggle = true,
+                        reveal = true
+                    })
+                end,
+                desc = "Explorer NeoTree (buffers)"
+            }, {
+                "<leader>es",
+                function()
+                    require("neo-tree.sources.document_symbols.commands").execute(
+                        {toggle = true, reveal = true})
+                end,
+                desc = "Explorer NeoTree (document_symbols)"
             }
         },
-        deactivate = function() vim.cmd([[Neotree close]]) end,
-        init = function()
-            if vim.fn.argc() == 1 then
-                local stat = vim.loop.fs_stat(vim.fn.argv(0))
-                if stat and stat.type == "directory" then
-                    require("neo-tree")
-                end
-            end
-        end,
         opts = {
             sources = {
                 "filesystem", "buffers", "git_status", "document_symbols"
