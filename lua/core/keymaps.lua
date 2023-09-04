@@ -9,7 +9,7 @@ map("n", ",qq", "<cmd>q<cr>", "Quit")
 map("n", ",qa", "<cmd>qa!<cr>", "Quit all")
 
 -- Diagnostic keymaps
-map('n', ',e', vim.diagnostic.open_float, "Show diagnostics under cursor")
+map("n", ",e", vim.diagnostic.open_float, "Show diagnostics under cursor")
 
 -- Easier access to beginning and end of lines
 map("n", "<M-h>", "^", "Go to beginning of line")
@@ -32,12 +32,6 @@ map("n", "<C-Up>", ":resize +2<CR>", "Increase size vertically")
 map("n", "<C-Down>", ":resize -2<CR>", "Decrease size vertically")
 map("n", "<C-Left>", ":vertical resize +2<CR>", "Increase size horizontal")
 map("n", "<C-Right>", ":vertical resize -2<CR>", "Decrease size horizontal")
-
--- Deleting buffers
-local buffers = require("helpers.buffers")
-map("n", "<leader>bd", buffers.delete_this, "Current buffer")
-map("n", "<leader>bdo", buffers.delete_others, "Other buffers")
-map("n", "<leader>bda", buffers.delete_all, "All buffers")
 
 -- Navigate buffers
 map("n", "<S-l>", ":bnext<CR>", "Next buffer")

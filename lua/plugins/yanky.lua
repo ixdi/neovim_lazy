@@ -1,10 +1,21 @@
+vim.g.clipboard = {
+    name = "xsel_override",
+    copy = {
+        ["+"] = "xsel --input --clipboard",
+        ["*"] = "xsel --input --primary"
+    },
+    paste = {
+        ["+"] = "xsel --output --clipboard",
+        ["*"] = "xsel --output --primary"
+    },
+    cache_enabled = 1
+}
+
 return {
     -- better yank/paste
     {
         "gbprod/yanky.nvim",
-        dependencies = {
-            {"kkharji/sqlite.lua", enabled = not jit.os:find("Windows")}
-        },
+        dependencies = {{"kkharji/sqlite.lua", enabled = true}},
         opts = function()
             local mapping = require("yanky.telescope.mapping")
             local mappings = mapping.get_defaults()
@@ -13,7 +24,7 @@ return {
                 highlight = {on_put = true, on_yank = true, timer = 200},
                 ring = {
                     history_length = 100,
-                    storage = "shada",
+                    storage = "sqlite",
                     sync_with_numbered_registers = true,
                     cancel_event = "update",
                     ignore_registers = {"_"}
