@@ -1,7 +1,7 @@
 local map = require("helpers.keys").map
 
 -- Blazingly fast way out of insert mode
-map("i", "jj", "<esc>")
+map("i", "jj", "<esc>", "Exit insert mode")
 
 -- Quick access to some common actions
 map("n", ",w", "<cmd>w<cr>", "Write")
@@ -28,10 +28,10 @@ map("n", "<S-Up>", "<C-w><S-k>", "Move window up")
 map("n", "<S-Right>", "<C-w><S-l>", "Move window to the right")
 
 -- Resize with arrows
-map("n", "<C-Up>", ":resize +2<CR>")
-map("n", "<C-Down>", ":resize -2<CR>")
-map("n", "<C-Left>", ":vertical resize +2<CR>")
-map("n", "<C-Right>", ":vertical resize -2<CR>")
+map("n", "<C-Up>", ":resize +2<CR>", "Increase size vertically")
+map("n", "<C-Down>", ":resize -2<CR>", "Decrease size vertically")
+map("n", "<C-Left>", ":vertical resize +2<CR>", "Increase size horizontal")
+map("n", "<C-Right>", ":vertical resize -2<CR>", "Decrease size horizontal")
 
 -- Deleting buffers
 local buffers = require("helpers.buffers")
@@ -40,12 +40,12 @@ map("n", "<leader>bdo", buffers.delete_others, "Other buffers")
 map("n", "<leader>bda", buffers.delete_all, "All buffers")
 
 -- Navigate buffers
-map("n", "<S-l>", ":bnext<CR>")
-map("n", "<S-h>", ":bprevious<CR>")
+map("n", "<S-l>", ":bnext<CR>", "Next buffer")
+map("n", "<S-h>", ":bprevious<CR>", "Prev buffer")
 
 -- Stay in indent mode
-map("v", "<", "<gv")
-map("v", ">", ">gv")
+map("v", "<", "<gv", "Decrease indent")
+map("v", ">", ">gv", "Increase indent")
 
 -- Clear after search
 map("n", ",m", "<cmd>nohl<cr>", "Clear highlights")
