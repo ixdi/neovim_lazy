@@ -14,9 +14,9 @@ return {
             mappings = {
                 -- Toggle comment (like `gcip` - comment inner paragraph) for both
                 -- Normal and Visual modes
-                comment = "<leader>c",
+                comment = "<leader>cc",
                 -- Toggle comment on current line
-                comment_line = "<leader>cc",
+                comment_line = "<leader>c",
                 -- Define 'comment' textobject (like `dgc` - delete whole comment block)
                 textobject = "gc"
             }
@@ -31,11 +31,11 @@ return {
         -- stylua: ignore
         keys = {
             {
-                "]t",
+                "<leader>tn",
                 function() require("todo-comments").jump_next() end,
                 desc = "Next todo comment"
             }, {
-                "[t",
+                "<leader>tp",
                 function() require("todo-comments").jump_prev() end,
                 desc = "Previous todo comment"
             }, {"<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)"},
