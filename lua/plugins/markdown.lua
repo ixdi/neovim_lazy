@@ -1,17 +1,11 @@
 return {
     {
+        -- NOTE: you must go to ~/.local/share/nvim/lazy/markdown-preview.nvim/
+        -- then update the package.json @node/type to the right version of your system node
         "iamcco/markdown-preview.nvim",
-        build = "cd app && npm install",
-        ft = "markdown",
-        lazy = true,
-        config = function()
-            vim.g.mkdp_auto_close = true
-            vim.g.mkdp_open_to_the_world = false
-            vim.g.mkdp_open_ip = "127.0.0.1"
-            vim.g.mkdp_port = "8888"
-            vim.g.mkdp_echo_preview_url = true
-            vim.g.mkdp_page_title = "${name}"
-        end,
+        build = "pnpm up && cd app && pnpm install",
+        init = function() vim.g.mkdp_filetypes = {"markdown"} end,
+        ft = {"markdown"},
         keys = {
             {
                 "<leader>md",
