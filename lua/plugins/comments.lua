@@ -10,6 +10,15 @@ return {
                         require("ts_context_commentstring.internal").calculate_commentstring() or
                             vim.bo.commentstring
                 end
+            },
+            mappings = {
+                -- Toggle comment (like `gcip` - comment inner paragraph) for both
+                -- Normal and Visual modes
+                comment = "<leader>c",
+                -- Toggle comment on current line
+                comment_line = "<leader>cc",
+                -- Define 'comment' textobject (like `dgc` - delete whole comment block)
+                textobject = "gc"
             }
         }
     }, -- Finds and lists all of the TODO, HACK, BUG, etc comment

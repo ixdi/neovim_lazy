@@ -43,9 +43,3 @@ map("v", ">", ">gv", "Increase indent")
 
 -- Clear after search
 map("n", ",m", "<cmd>nohl<cr>", "Clear highlights")
-
--- Comments
-map("n", "<leader>c",
-    "<cmd>lua require('Comment.api').toggle.linewise.current()<cr>")
-map("v", "<leader>c",
-    '<esc><cmd>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<cr>')
