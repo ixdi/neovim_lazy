@@ -28,11 +28,12 @@ return {
             require("fidget").setup()
 
             -- Set up cool signs for diagnostics
+            local icons = require("config").icons.diagnostics
             local signs = {
-                Error = " ",
-                Warn = " ",
-                Hint = " ",
-                Info = " "
+                Error = icons.Error,
+                Warn = icons.Warn,
+                Hint = icons.Hint,
+                Info = icons.Info
             }
             for type, icon in pairs(signs) do
                 local hl = "DiagnosticSign" .. type
