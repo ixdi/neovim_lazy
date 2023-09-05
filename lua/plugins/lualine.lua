@@ -6,7 +6,6 @@ return {
         event = "VeryLazy",
         opts = function()
             local icons = require("config").icons
-            local Util = require("plugins.util")
 
             return {
                 options = {
