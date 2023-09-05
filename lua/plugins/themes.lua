@@ -1,7 +1,2 @@
 -- Themes
-return {
-	{
-		"EdenEast/nightfox.nvim",
-		name = "nordfox",
-	}
-}
+return {{"EdenEast/nightfox.nvim", name = "nordfox"}}

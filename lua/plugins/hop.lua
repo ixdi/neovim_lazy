@@ -1,7 +1,7 @@
 return {
     {
-        'phaazon/hop.nvim',
-        branch = 'v2', -- optional but strongly recommended
+        "phaazon/hop.nvim",
+        branch = "v2", -- optional but strongly recommended
         keys = {
             {"<leader>h", ":HopPattern<cr>", desc = "Hop pattern"},
             {"<leader>hw", ":HopWord<cr>", desc = "Hop word"},

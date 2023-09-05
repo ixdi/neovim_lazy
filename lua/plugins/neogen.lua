@@ -4,7 +4,7 @@ return {
         dependencies = "nvim-treesitter/nvim-treesitter",
         config = true,
         -- uncomment next line if you want to follow only stable versions
-        -- version = "*" 
+        -- version = "*"
         --
         keys = {
             {

@@ -1,3 +1,3 @@
 return {
-  -- Better text-objects
+    -- Better text-objects
 }
