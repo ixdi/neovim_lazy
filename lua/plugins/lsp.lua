@@ -14,7 +14,7 @@ return {
                 ensure_installed = {
                     "ansiblels", "bashls", "cssls", "dockerls",
                     "docker_compose_language_service", "emmet_ls", "jsonls",
-                    "lua_ls", "html", "marksman", "pyls", "stylelint_lsp",
+                    "lua_ls", "html", "marksman", "pylsp", "stylelint_lsp",
                     "markdownlint", "markuplint", "cssls", "dockerls",
                     "terraformls", "tsserver", "yamlls", "volar", "prettierd"
                 },
