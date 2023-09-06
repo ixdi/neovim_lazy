@@ -25,10 +25,17 @@ return {
             require("neodev").setup()
 
             -- Turn on LSP status information
-            require("fidget").setup()
+            require("fidget").setup({
+                text = {
+                    spinner = "pipe", -- animation shown when tasks are ongoing
+                    done = "🗸", -- character shown when all tasks are complete
+                    commenced = "Started", -- message shown when task starts
+                    completed = "Completed" -- message shown when task completes
+                }
+            })
 
-            -- Set up cool signs for diagnostics
             local icons = require("config").icons.diagnostics
+            -- Set up cool signs for diagnostics
             local signs = {
                 Error = icons.Error,
                 Warn = icons.Warn,

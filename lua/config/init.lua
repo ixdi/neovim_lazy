@@ -1,9 +1,7 @@
----@type LazyVimConfig
 local M = {}
 
 M.lazy_version = ">=9.1.0"
 
----@class LazyVimConfig
 -- icons used by other plugins
 M.icons = {
     dap = {

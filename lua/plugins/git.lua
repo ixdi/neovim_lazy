@@ -4,6 +4,7 @@ return {
         "akinsho/git-conflict.nvim",
         commit = "2957f74",
         config = function()
+            ---@diagnostic disable-next-line: missing-fields
             require("git-conflict").setup({
                 default_mappings = {
                     ours = "co",
