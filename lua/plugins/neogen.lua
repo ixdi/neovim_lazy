@@ -6,18 +6,13 @@ return {
         -- uncomment next line if you want to follow only stable versions
         -- version = "*"
         --
-        keys = {
-            {
-                ",d",
-                ":lua require('neogen').generate()<cr>",
-                desc = "comment code"
-            }
-        },
+        keys = {{"<leader>d", ":Neogen<cr>", desc = "comment code"}},
         opts = {
             languages = {
                 lua = {template = {annotation_convention = "emmylua"}},
                 python = {template = {annotation_convention = "reST"}},
-                typescript = {template = {annotation_convention = "jsdoc"}}
+                javascript = {template = {annotation_convention = "jsdoc"}},
+                typescript = {template = {annotation_convention = "tsdoc"}}
             }
         }
     }
