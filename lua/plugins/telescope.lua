@@ -1,4 +1,3 @@
--- Telescope fuzzy finding (all the things)
 return {
     -- fuzzy finder
     {
@@ -6,6 +5,9 @@ return {
         commit = vim.fn.has("nvim-0.9.0") == 0 and "057ee0f8783" or nil,
         cmd = "Telescope",
         version = false, -- telescope did only one release, so use HEAD for now
+        config = function()
+            require("telescope").load_extension("file_browser")
+        end,
         keys = {
             {
                 "<leader>dc",
@@ -62,7 +64,11 @@ return {
             }, {"<leader>fi", ":Telescope find_files<cr>", desc = "Find files"},
             {"<leader>u", ":Telescope oldfiles<cr>", desc = "Recent files"},
             {"<leader>f", ":Telescope live_grep<cr>", desc = "Recent files"},
-            {"<leader>l", ":Telescope resume<cr>", desc = "Recent files"}
+            {"<leader>l", ":Telescope resume<cr>", desc = "Recent files"}, {
+                "<leader>ex",
+                ":Telescope file_browser path=%:p:h select_buffer=true<cr>",
+                desc = "File browser"
+            }
         },
         opts = {
             defaults = {
@@ -125,8 +131,46 @@ return {
                     override_file_sorter = true, -- override the file sorter
                     case_mode = "smart_case" -- or "ignore_case" or "respect_case"
                     -- the default case_mode is "smart_case"
+                },
+                file_browser = {
+                    theme = "ivy",
+                    grouped = false,
+                    files = true,
+                    add_dirs = true,
+                    depth = 5,
+                    auto_depth = true,
+                    select_buffer = false,
+                    hidden = {file_browser = false, folder_browser = false},
+                    -- respect_gitignore
+                    -- browse_files
+                    -- browse_folders
+                    hide_parent_dir = false,
+                    collapse_dirs = true,
+                    prompt_path = false,
+                    quiet = false,
+                    dir_icon = "",
+                    dir_icon_hl = "Default",
+                    display_stat = {date = true, size = true, mode = true},
+                    use_fd = true,
+                    git_status = true,
+                    cwd_to_path = false,
+                    -- disables netrw and use telescope-file-browser in its place
+                    hijack_netrw = true,
+                    mappings = {
+                        ["i"] = {
+                            -- your custom insert mode mappings
+                        },
+                        ["n"] = {
+                            -- your custom normal mode mappings
+                        }
+                    }
                 }
             }
         }
-    }, {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
+    }, {"nvim-telescope/telescope-fzf-native.nvim", build = "make"}, {
+        "nvim-telescope/telescope-file-browser.nvim",
+        dependencies = {
+            "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"
+        }
+    }
 }
