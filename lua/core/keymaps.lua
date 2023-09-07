@@ -1,3 +1,4 @@
+-- luacheck: globals vim
 local map = require("helpers.keys").map
 
 -- Blazingly fast way out of insert mode

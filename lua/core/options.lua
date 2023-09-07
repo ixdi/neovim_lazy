@@ -1,3 +1,4 @@
+-- luacheck: globals vim
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -32,7 +33,7 @@ local opts = {
     numberwidth = 4, -- minimal number of columns to use for the line number {default 4}
     signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
     scrolloff = 8, -- minimal number of screen lines to keep above and below the cursor
-    sidescrolloff = 8, -- minimal number of screen columns to keep to the left and right of the cursor if wrap is `false`
+    sidescrolloff = 8, -- minimal number of screen columns to keep to the left and right of the cursor if wrap is false
     guifont = "monospace:h17", -- the font used in graphical neovim applications
     linebreak = true,
     wrap = false,

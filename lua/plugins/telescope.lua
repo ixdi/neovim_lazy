@@ -1,3 +1,4 @@
+-- luacheck: globals vim
 return {
     -- fuzzy finder
     {

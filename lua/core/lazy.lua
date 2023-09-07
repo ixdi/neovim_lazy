@@ -1,3 +1,4 @@
+-- luacheck: globals vim
 -- Install lazy.nvim if not already installed
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -8,6 +9,8 @@ if not vim.loop.fs_stat(lazypath) then
     })
 end
 vim.opt.rtp:prepend(lazypath)
+
+vim.g.python3_host_prog = "/opt/miniconda3/bin/python3"
 
 -- Use a protected call so we don't error out on first use
 local ok, lazy = pcall(require, "lazy")
@@ -66,7 +69,7 @@ lazy.setup("plugins", {
                 require("lazy.util").float_term(nil, {cwd = plugin.dir})
             end
         }
-    },
+    }
 })
 
 -- Might as well set up an easy-access keybinding
