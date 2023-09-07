@@ -12,7 +12,7 @@ return {
                 lua = {template = {annotation_convention = "emmylua"}},
                 python = {template = {annotation_convention = "reST"}},
                 javascript = {template = {annotation_convention = "jsdoc"}},
-                typescript = {template = {annotation_convention = "tsdoc"}}
+                typescript = {template = {annotation_convention = "jsdoc"}}
             }
         }
     }
