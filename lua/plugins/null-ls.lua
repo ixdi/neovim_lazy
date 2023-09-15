@@ -13,7 +13,7 @@ return {
                 sources = {
                     code_actions.eslint_d, code_actions.gitsigns,
                     code_actions.refactoring, -- code_actions.eslint,
-                    diagnostics.djlint.with({filetypes = {"html"}}), -- diagnostics.ansiblelint,
+                    -- diagnostics.djlint.with({filetypes = {"html"}}), -- diagnostics.ansiblelint,
                     -- diagnostics.codespell,
                     diagnostics.eslint_d.with({
                         disabled_filetypes = {"typescript"}
@@ -28,7 +28,7 @@ return {
                     formatting.isort, formatting.black, formatting.stylua,
                     formatting.beautysh, -- formatting.eslint_d,
                     -- formatting.eslint,
-                    formatting.djlint.with({filetypes = {"html"}}),
+                    -- formatting.djlint.with({filetypes = {"html"}}),
                     formatting.fixjson, formatting.lua_format,
                     formatting.markdownlint, formatting.prettierd,
                     formatting.yamlfmt
