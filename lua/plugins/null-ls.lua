@@ -26,7 +26,7 @@ return {
                     diagnostics.vint, -- diagnostics.zsh,
                     -- formatting.autopep8,
                     formatting.isort, formatting.black, formatting.stylua,
-                    formatting.beautysh, -- formatting.eslint_d,
+                    -- formatting.beautysh, -- formatting.eslint_d,
                     -- formatting.eslint,
                     -- formatting.djlint.with({filetypes = {"html"}}),
                     formatting.fixjson, formatting.lua_format,
