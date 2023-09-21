@@ -23,7 +23,7 @@ return {
             {
                 "<leader><leader>",
                 ":lua vim.lsp.buf.hover()<cr>",
-                desc = "Code definitions"
+                desc = "Code hover"
             }, {
                 "<leader>i",
                 ":Telescope lsp_implementations<cr>",
@@ -64,8 +64,8 @@ return {
                 desc = "Code outgoings"
             }, {"<leader>fi", ":Telescope find_files<cr>", desc = "Find files"},
             {"<leader>u", ":Telescope oldfiles<cr>", desc = "Recent files"},
-            {"<leader>f", ":Telescope live_grep<cr>", desc = "Recent files"},
-            {"<leader>l", ":Telescope resume<cr>", desc = "Recent files"}, {
+            {"<leader>f", ":Telescope live_grep<cr>", desc = "Live grep"},
+            {"<leader>l", ":Telescope resume<cr>", desc = "Resume"}, {
                 "<leader>ex",
                 ":Telescope file_browser path=%:p:h select_buffer=true<cr>",
                 desc = "File browser"
