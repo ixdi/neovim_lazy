@@ -107,11 +107,11 @@ return {
             })
 
             -- Python
-            require("lspconfig")["pylsp"].setup({
+            require("lspconfig")["python_lsp_server"].setup({
                 on_attach = on_attach,
                 capabilities = capabilities,
                 settings = {
-                    pylsp = {
+                    python_lsp_server = {
                         plugins = {
                             flake8 = {
                                 enabled = true,
