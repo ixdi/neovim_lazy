@@ -97,6 +97,7 @@ return {
     }, -- indent guides for Neovim
     {
         "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
         event = {"BufReadPost", "BufNewFile"},
         config = function()
             local opts = {
@@ -107,7 +108,7 @@ return {
                         "lazy", "mason", "notify", "toggleterm", "lazyterm"
                     }
                 },
-                show_trailing_blankline_indent = false,
+                -- show_trailing_blankline_indent = false,
                 scope = {enabled = false}
             }
             require("ibl").setup(opts)
