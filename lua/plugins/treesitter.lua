@@ -3,7 +3,7 @@ return {
     -- Treesitter is a new parser generator tool that we can
     -- use in Neovim to power faster and more accurate
     -- syntax highlighting.
-    {
+    {"windwp/nvim-ts-autotag"}, {
         "nvim-treesitter/nvim-treesitter",
         version = false, -- last release is way too old and doesn't work on Windows
         build = ":TSUpdate",
@@ -37,10 +37,10 @@ return {
             incremental_selection = {
                 enable = true,
                 keymaps = {
-                    init_selection = "<C-space>",
-                    node_incremental = "<C-space>",
-                    scope_incremental = false,
-                    node_decremental = "<bs>"
+                    -- init_selection = "<C-space>",
+                    node_incremental = "v",
+                    node_decremental = "V"
+                    -- scope_incremental = false
                 }
             },
             autotag = {

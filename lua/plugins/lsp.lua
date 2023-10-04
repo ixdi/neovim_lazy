@@ -162,9 +162,6 @@ return {
                     completions = {completeFunctionCalls = true}
                 }
             })
-
-            -- djlint
-            require("lspconfig")["glint"].setup({})
         end
     }
 }
