@@ -1,15 +1,13 @@
 -- LSP Configuration & Plugins
 return {
     {
-        "neovim/nvim-lspconfig",
-        dependencies = {
-            "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim",
-            "j-hui/fidget.nvim", "folke/neodev.nvim", "RRethy/vim-illuminate",
-            "hrsh7th/cmp-nvim-lsp", "jose-elias-alvarez/typescript.nvim"
-        },
+        -- Set up Mason before anything else
+        "williamboman/mason.nvim",
+        config = function() require("mason").setup() end
+    }, {
+        "williamboman/mason-lspconfig.nvim",
+        requires = {"williamboman/mason.nvim", "neovim/nvim-lspconfig"},
         config = function()
-            -- Set up Mason before anything else
-            require("mason").setup()
             require("mason-lspconfig").setup({
                 ensure_installed = {
                     "ansiblels", "bashls", "cssls", "dockerls",
@@ -17,10 +15,17 @@ return {
                     "lua_ls", "html", "marksman", "pylsp", "stylelint_lsp",
                     "markdownlint", "markuplint", "cssls", "dockerls",
                     "terraformls", "tsserver", "yamlls", "volar", "prettierd"
-                },
-                automatic_installation = true
+                }
             })
-
+        end
+    }, {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            "williamboman/mason-lspconfig.nvim", "williamboman/mason.nvim",
+            "j-hui/fidget.nvim", "folke/neodev.nvim", "RRethy/vim-illuminate",
+            "hrsh7th/cmp-nvim-lsp", "jose-elias-alvarez/typescript.nvim"
+        },
+        config = function()
             -- Neodev setup before LSP config
             require("neodev").setup()
 
