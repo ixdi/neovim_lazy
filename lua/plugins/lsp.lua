@@ -120,14 +120,26 @@ return {
                         plugins = {
                             flake8 = {
                                 enabled = true,
-                                maxLineLength = 88 -- Black's line length
+                                maxLineLength = 150 -- Black's line length
                             },
                             -- Disable plugins overlapping with flake8
-                            pycodestyle = {enabled = false},
-                            mccabe = {enabled = false},
-                            pyflakes = {enabled = false},
+                            pycodestyle = {
+                                enabled = false,
+                                maxLineLength = 150 -- Black's line length
+                            },
+                            mccabe = {enabled = true},
+                            pydocstyle = {
+                                enabled = true,
+                                maxLineLength = 150 -- Black's line length
+                            },
+                            pyflakes = {enabled = true},
+                            pylint = {
+                                enabled = false,
+                                maxLineLength = 150 -- Black's line length
+                            },
                             -- Use Black as the formatter
-                            autopep8 = {enabled = false}
+                            autopep8 = {enabled = true},
+                            yapf = {enabled = true}
                         }
                     }
                 }
