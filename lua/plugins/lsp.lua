@@ -162,6 +162,7 @@ return {
                 on_attach = on_attach,
                 capabilities = capabilities,
                 settings = {
+                    editor = {linkedEditing = true},
                     typescript = {
                         format = {
                             indentSize = vim.o.shiftwidth,

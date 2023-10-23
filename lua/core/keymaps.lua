@@ -44,3 +44,6 @@ map("v", ">", ">gv", "Increase indent")
 
 -- Clear after search
 map("n", ",m", "<cmd>nohl<cr>", "Clear highlights")
+
+-- Yank without loosing the register
+map("v", "p", '"_dP', "Yank without loosing the register")
