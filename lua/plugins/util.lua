@@ -4,6 +4,7 @@ return {
     -- measure startuptime
     {
         "dstein64/vim-startuptime",
+        event = {"VimEnter"},
         cmd = "StartupTime",
         config = function() vim.g.startuptime_tries = 10 end
     }, -- Session management. This saves your session in the background,
