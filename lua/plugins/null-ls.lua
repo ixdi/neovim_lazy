@@ -12,27 +12,14 @@ return {
                 debug = false,
                 sources = {
                     code_actions.eslint_d, code_actions.gitsigns,
-                    code_actions.refactoring, -- code_actions.eslint,
-                    -- diagnostics.djlint.with({filetypes = {"html"}}), -- diagnostics.ansiblelint,
-                    -- diagnostics.codespell,
-                    diagnostics.eslint_d.with({
-                        disabled_filetypes = {"typescript"}
-                    }), -- diagnostics.eslint,
-                    diagnostics.luacheck, -- diagnostics.flake8,
-                    -- diagnostics.jsonlint,
-                    diagnostics.markdownlint, -- diagnostics.misspell,
-                    -- diagnostics.pylint, -- diagnostics.stylelint,
-                    -- diagnostics.tidy,
-                    diagnostics.vint, -- diagnostics.zsh,
+                    code_actions.refactoring,
+                    diagnostics.eslint_d
+                        .with({disabled_filetypes = {"typescript"}}),
+                    diagnostics.luacheck, diagnostics.markdownlint, -- diagnostics.misspell,
                     -- formatting.autopep8, -- formatting.isort, -- formatting.black,
-                    formatting.stylua,
-                    -- formatting.beautysh, -- formatting.eslint_d,
-                    -- formatting.eslint,
-                    -- formatting.djlint.with({filetypes = {"html"}}),
-                    formatting.fixjson, formatting.lua_format,
-                    formatting.markdownlint, formatting.prettierd,
-                    formatting.yamlfmt
-                    -- hover.printenv
+                    formatting.stylua, formatting.fixjson,
+                    formatting.lua_format, formatting.markdownlint,
+                    formatting.prettierd, formatting.yamlfmt
                 },
                 -- you can reuse a shared lspconfig on_attach callback here
                 on_attach = function(client, bufnr)
