@@ -54,12 +54,12 @@ return {
                 desc = "Signature help"
             },
             {
-                "<leader>ci",
+                "<leader>cic",
                 ":Telescope lsp_incoming_calls<cr>",
                 desc = "Code incommings"
             },
             {
-                "<leader>co",
+                "<leader>coc",
                 ":Telescope lsp_outgoing_calls<cr>",
                 desc = "Code outgoings"
             }, {"<leader>fi", ":Telescope find_files<cr>", desc = "Find files"},
