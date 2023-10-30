@@ -10,7 +10,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.g.python3_host_prog = "/opt/miniconda3/bin/python3"
+vim.g.python3_host_prog = "~/miniconda3/bin/python3"
 vim.g.loaded_perl_provider = 0
 
 -- Use a protected call so we don't error out on first use

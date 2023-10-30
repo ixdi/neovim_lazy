@@ -3,7 +3,18 @@ return {
     {
         -- Set up Mason before anything else
         "williamboman/mason.nvim",
-        config = function() require("mason").setup() end
+        config = function()
+            require("mason").setup({
+                ui = {
+                    check_outdated_packages_on_open = true,
+                    icons = {
+                        package_installed = "✓",
+                        package_pending = "➜",
+                        package_uninstalled = "✗"
+                    }
+                }
+            })
+        end
     }, {
         "williamboman/mason-lspconfig.nvim",
         requires = {"williamboman/mason.nvim", "neovim/nvim-lspconfig"},
