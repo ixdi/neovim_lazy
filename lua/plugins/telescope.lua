@@ -6,8 +6,7 @@ return {
         dependencies = {
             "debugloop/telescope-undo.nvim",
             "nvim-telescope/telescope-file-browser.nvim",
-            {"nvim-telescope/telescope-fzf-native.nvim", build = "make"},
-            "LukasPietzschmann/telescope-tabs"
+            {"nvim-telescope/telescope-fzf-native.nvim", build = "make"}
         },
         cmd = "Telescope",
         version = false, -- telescope did only one release, so use HEAD for now
@@ -190,13 +189,5 @@ return {
         dependencies = {
             "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"
         }
-    }, {
-        "LukasPietzschmann/telescope-tabs",
-        dependencies = {"nvim-telescope/telescope.nvim"},
-        config = function()
-            require("telescope-tabs").setup({
-                -- Your custom config :^)
-            })
-        end
     }
 }
