@@ -3,11 +3,17 @@ return {
     -- fuzzy finder
     {
         "nvim-telescope/telescope.nvim",
-        commit = vim.fn.has("nvim-0.9.0") == 0 and "057ee0f8783" or nil,
+        dependencies = {
+            "debugloop/telescope-undo.nvim",
+            "nvim-telescope/telescope-file-browser.nvim",
+            {"nvim-telescope/telescope-fzf-native.nvim", build = "make"},
+            "LukasPietzschmann/telescope-tabs"
+        },
         cmd = "Telescope",
         version = false, -- telescope did only one release, so use HEAD for now
         config = function()
             require("telescope").load_extension("file_browser")
+            require("telescope").load_extension("undo")
         end,
         keys = {
             {
@@ -34,6 +40,7 @@ return {
                 ":Telescope lsp_references<cr>",
                 desc = "Code references"
             }, {"<leader>k", ":Telescope keymaps<cr>", desc = "Keymaps"},
+            {"<leader>un", ":Telescope undo<cr>", desc = "Telescope undo"},
             {
                 "<leader>ee",
                 ":Telescope diagnostics<cr>",
@@ -57,7 +64,7 @@ return {
                 "<leader>cic",
                 ":Telescope lsp_incoming_calls<cr>",
                 desc = "Code incommings"
-            },
+            }, {"<leader>b", ":Telescope buffers<cr>", desc = "Buffers"},
             {
                 "<leader>coc",
                 ":Telescope lsp_outgoing_calls<cr>",
@@ -165,6 +172,16 @@ return {
                             -- your custom normal mode mappings
                         }
                     }
+                },
+                undo = {
+                    use_delta = true,
+                    use_custom_command = nil, -- setting this implies `use_delta = false`. Accepted format is: { "bash", "-c", "echo '$DIFF' | delta" }
+                    side_by_side = true,
+                    layout_strategy = "vertical",
+                    layout_config = {preview_height = 0.8},
+                    diff_context_lines = vim.o.scrolloff,
+                    entry_format = "state #$ID, $STAT, $TIME",
+                    time_format = ""
                 }
             }
         }
@@ -173,5 +190,13 @@ return {
         dependencies = {
             "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"
         }
+    }, {
+        "LukasPietzschmann/telescope-tabs",
+        dependencies = {"nvim-telescope/telescope.nvim"},
+        config = function()
+            require("telescope-tabs").setup({
+                -- Your custom config :^)
+            })
+        end
     }
 }
