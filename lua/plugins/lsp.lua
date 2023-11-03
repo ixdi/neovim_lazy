@@ -17,7 +17,7 @@ return {
         end
     }, {
         "williamboman/mason-lspconfig.nvim",
-        requires = {"williamboman/mason.nvim", "neovim/nvim-lspconfig"},
+        requires = {"williamboman/mason.nvim"},
         config = function()
             require("mason-lspconfig").setup({
                 ensure_installed = {
