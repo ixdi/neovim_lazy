@@ -174,13 +174,22 @@ return {
                 },
                 undo = {
                     use_delta = true,
-                    use_custom_command = nil, -- setting this implies `use_delta = false`. Accepted format is: { "bash", "-c", "echo '$DIFF' | delta" }
+                    use_custom_command = nil, -- implies `use_delta = false`. format is: { "bash", "-c", "echo '$DIFF' | delta" }
                     side_by_side = true,
                     layout_strategy = "vertical",
                     layout_config = {preview_height = 0.8},
                     diff_context_lines = vim.o.scrolloff,
                     entry_format = "state #$ID, $STAT, $TIME",
                     time_format = ""
+                }
+            },
+            pickers = {
+                buffers = {
+                    show_all_buffers = true,
+                    sort_lastused = true,
+                    theme = "dropdown",
+                    previewer = false,
+                    mappings = {n = {["d"] = "delete_buffer"}}
                 }
             }
         }
