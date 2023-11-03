@@ -42,7 +42,8 @@ return {
             }, {
                 "<leader>eb",
                 function()
-                    require("neo-tree.sources.buffers.commands").execute({
+                    require("neo-tree.command").execute({
+                        source = "buffers",
                         toggle = true,
                         reveal = true
                     })
@@ -50,10 +51,7 @@ return {
                 desc = "Explorer NeoTree (buffers)"
             }, {
                 "<leader>es",
-                function()
-                    require("neo-tree.sources.document_symbols.commands").execute(
-                        {toggle = true, reveal = true})
-                end,
+                ":Neotree document_symbols<cr>",
                 desc = "Explorer NeoTree (document_symbols)"
             }
         },
@@ -67,6 +65,7 @@ return {
             end
         end,
         opts = {
+            source_selector = {winbar = true, statusline = false},
             sources = {
                 "filesystem", "buffers", "git_status", "document_symbols"
             },
