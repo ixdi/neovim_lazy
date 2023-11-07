@@ -21,10 +21,12 @@ return {
             local mappings = mapping.get_defaults()
             mappings.i["<c-p>"] = nil
             return {
-                highlight = {on_put = true, on_yank = true, timer = 200},
+                highlight = {on_put = true, on_yank = true, timer = 500},
                 ring = {
-                    history_length = 100,
+                    history_length = 200,
                     storage = "sqlite",
+                    storage_path = vim.fn.stdpath("data") ..
+                        "/databases/yanky.db",
                     sync_with_numbered_registers = true,
                     cancel_event = "update",
                     ignore_registers = {"_"}
@@ -51,12 +53,12 @@ return {
             },
             {"y", "<Plug>(YankyYank)", mode = {"n", "x"}, desc = "Yank text"},
             {
-                "p",
+                "<C-p>",
                 "<Plug>(YankyPutAfter)",
                 mode = {"n", "x"},
                 desc = "Put yanked text after cursor"
             }, {
-                "P",
+                "<C-P>",
                 "<Plug>(YankyPutBefore)",
                 mode = {"n", "x"},
                 desc = "Put yanked text before cursor"
@@ -69,19 +71,11 @@ return {
                 "<Plug>(YankyCycleBackward)",
                 desc = "Cycle backward through yank history"
             }, {
-                "]p",
+                "p",
                 "<Plug>(YankyPutIndentAfterLinewise)",
                 desc = "Put indented after cursor (linewise)"
             }, {
-                "[p",
-                "<Plug>(YankyPutIndentBeforeLinewise)",
-                desc = "Put indented before cursor (linewise)"
-            }, {
-                "]P",
-                "<Plug>(YankyPutIndentAfterLinewise)",
-                desc = "Put indented after cursor (linewise)"
-            }, {
-                "[P",
+                "P",
                 "<Plug>(YankyPutIndentBeforeLinewise)",
                 desc = "Put indented before cursor (linewise)"
             }
