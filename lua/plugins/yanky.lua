@@ -12,7 +12,6 @@ vim.g.clipboard = {
 }
 
 return {
-    -- better yank/paste
     {
         "gbprod/yanky.nvim",
         dependencies = {{"kkharji/sqlite.lua", enabled = true}},
@@ -42,7 +41,6 @@ return {
             }
         end,
         keys = {
-            -- stylua: ignore
             {
                 "<leader>p",
                 function()
