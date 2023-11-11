@@ -123,34 +123,53 @@ return {
             })
 
             -- Python
+            --[[ require("lspconfig")["pyright"].setup({
+                on_attach = on_attach,
+                capabilities = capabilities,
+                settings = {
+                    pyright = {
+                        autoImportCompletion = true,
+                        python = {
+                            analysis = {
+                                autoSearchPaths = true,
+                                diagnosticMode = "diagnosticMode",
+                                useLibraryCodeForTypes = true,
+                                typeCheckingMode = "strict"
+                            }
+                        }
+                    }
+                }
+            }) ]]
             require("lspconfig")["pylsp"].setup({
                 on_attach = on_attach,
                 capabilities = capabilities,
                 settings = {
                     pylsp = {
                         plugins = {
-                            flake8 = {
+                            black = {
                                 enabled = true,
-                                maxLineLength = 150 -- Black's line length
+                                lineLength = 150 -- Black's line length
                             },
-                            -- Disable plugins overlapping with flake8
-                            pycodestyle = {
-                                enabled = false,
-                                maxLineLength = 150 -- Black's line length
-                            },
-                            mccabe = {enabled = true},
-                            pydocstyle = {
-                                enabled = true,
-                                maxLineLength = 150 -- Black's line length
-                            },
-                            pyflakes = {enabled = true},
+                            autopep8 = {enabled = false},
+                            yapf = {enabled = false},
+                            -- linter options
                             pylint = {
-                                enabled = false,
-                                maxLineLength = 150 -- Black's line length
+                                enabled = true,
+                                executable = "pylint",
+                                format = {maxLineLength = 150}
                             },
-                            -- Use Black as the formatter
-                            autopep8 = {enabled = true},
-                            yapf = {enabled = true}
+                            pyflakes = {enabled = false},
+                            pycodestyle = {enabled = false},
+                            -- type checker
+                            pylsp_mypy = {
+                                enabled = true,
+                                report_progress = true,
+                                live_mode = false
+                            },
+                            -- auto-completion options
+                            jedi_completion = {fuzzy = true},
+                            -- import sorting
+                            pyls_isort = {enabled = true}
                         }
                     }
                 }
