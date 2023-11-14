@@ -3,125 +3,136 @@
 local icons = require("config").icons
 
 vim.fn.sign_define("DiagnosticSignError", {
-    text = icons.diagnostics.Error,
-    texthl = "DiagnosticSignError"
+	text = icons.diagnostics.Error,
+	texthl = "DiagnosticSignError",
 })
 vim.fn.sign_define("DiagnosticSignWarn", {
-    text = icons.diagnostics.Warn,
-    texthl = "DiagnosticSignWarn"
+	text = icons.diagnostics.Warn,
+	texthl = "DiagnosticSignWarn",
 })
 vim.fn.sign_define("DiagnosticSignInfo", {
-    text = icons.diagnostics.Info,
-    texthl = "DiagnosticSignInfo"
+	text = icons.diagnostics.Info,
+	texthl = "DiagnosticSignInfo",
 })
 vim.fn.sign_define("DiagnosticSignHint", {
-    text = icons.diagnostics.Hint,
-    texthl = "DiagnosticSignHint"
+	text = icons.diagnostics.Hint,
+	texthl = "DiagnosticSignHint",
 })
 
 return {
-    -- file explorer
-    {
-        "nvim-neo-tree/neo-tree.nvim",
-        branch = "v3.x",
-        dependencies = {
-            "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-            "MunifTanjim/nui.nvim"
-        },
-        cmd = "Neotree",
-        keys = {
-            {
-                "<leader>e",
-                function()
-                    require("neo-tree.command").execute({
-                        toggle = true,
-                        reveal = true
-                    })
-                end,
-                desc = "Explorer NeoTree (root dir)"
-            }, {
-                "<leader>eb",
-                function()
-                    require("neo-tree.command").execute({
-                        source = "buffers",
-                        toggle = true,
-                        reveal = true
-                    })
-                end,
-                desc = "Explorer NeoTree (buffers)"
-            }, {
-                "<leader>es",
-                ":Neotree document_symbols<cr>",
-                desc = "Explorer NeoTree (document_symbols)"
-            }
-        },
-        deactivate = function() vim.cmd([[Neotree close]]) end,
-        init = function()
-            if vim.fn.argc() == 1 then
-                local stat = vim.loop.fs_stat(vim.fn.argv(0))
-                if stat and stat.type == "directory" then
-                    require("neo-tree")
-                end
-            end
-        end,
-        opts = {
-            source_selector = {winbar = true, statusline = false},
-            sources = {
-                "filesystem", "buffers", "git_status", "document_symbols"
-            },
-            open_files_do_not_replace_types = {
-                "terminal", "Trouble", "qf", "Outline"
-            },
-            filesystem = {
-                bind_to_cwd = false,
-                follow_current_file = {enabled = true},
-                use_libuv_file_watcher = true
-            },
-            window = {
-                mappings = {
-                    ["<space>"] = "toggle_node",
-                    ["o"] = "open",
-                    ["s"] = "open_split",
-                    ["v"] = "open_vsplit",
-                    ["?"] = {
-                        "show_help",
-                        nowait = false,
-                        config = {title = "Order by", prefix_key = "o"}
-                    }
-                }
-            },
-            default_component_configs = {
-                symbols = {
-                    -- Change type
-                    added = icons.git.added,
-                    deleted = icons.git.removed,
-                    modified = icons.git.modified,
-                    renamed = "󰁕",
-                    -- Status type
-                    untracked = "",
-                    ignored = "",
-                    unstaged = "",
-                    staged = "",
-                    conflict = ""
-                },
-                indent = {
-                    with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
-                    expander_collapsed = "",
-                    expander_expanded = "",
-                    expander_highlight = "NeoTreeExpander"
-                }
-            }
-        },
-        config = function(_, opts)
-            require("neo-tree").setup(opts)
-            vim.api.nvim_create_autocmd("TermClose", {
-                pattern = "*lazygit",
-                callback = function()
-                    if package.loaded["neo-tree.sources.git_status"] then
-                        require("neo-tree.sources.git_status").refresh()
-                    end
-                end
-            })
-        end
-    }
+	-- file explorer
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
+		},
+		cmd = "Neotree",
+		keys = {
+			{
+				"<leader>e",
+				function()
+					require("neo-tree.command").execute({
+						toggle = true,
+						reveal = true,
+					})
+				end,
+				desc = "Explorer NeoTree (root dir)",
+			},
+			{
+				"<leader>eb",
+				function()
+					require("neo-tree.command").execute({
+						source = "buffers",
+						toggle = true,
+						reveal = true,
+					})
+				end,
+				desc = "Explorer NeoTree (buffers)",
+			},
+			{
+				"<leader>es",
+				":Neotree document_symbols<cr>",
+				desc = "Explorer NeoTree (document_symbols)",
+			},
+		},
+		deactivate = function()
+			vim.cmd([[Neotree close]])
+		end,
+		init = function()
+			if vim.fn.argc() == 1 then
+				local stat = vim.loop.fs_stat(vim.fn.argv(0))
+				if stat and stat.type == "directory" then
+					require("neo-tree")
+				end
+			end
+		end,
+		opts = {
+			source_selector = { winbar = true, statusline = false },
+			sources = {
+				"filesystem",
+				"buffers",
+				"git_status",
+				"document_symbols",
+			},
+			open_files_do_not_replace_types = {
+				"terminal",
+				"Trouble",
+				"qf",
+				"Outline",
+			},
+			filesystem = {
+				bind_to_cwd = false,
+				follow_current_file = { enabled = true },
+				use_libuv_file_watcher = true,
+			},
+			window = {
+				mappings = {
+					["<space>"] = "toggle_node",
+					["o"] = "open",
+					["s"] = "open_split",
+					["v"] = "open_vsplit",
+					["?"] = {
+						"show_help",
+						nowait = false,
+						config = { title = "Order by", prefix_key = "o" },
+					},
+				},
+			},
+			default_component_configs = {
+				symbols = {
+					-- Change type
+					added = icons.git.added,
+					deleted = icons.git.removed,
+					modified = icons.git.modified,
+					renamed = "󰁕",
+					-- Status type
+					untracked = "",
+					ignored = "",
+					unstaged = "",
+					staged = "",
+					conflict = "",
+				},
+				indent = {
+					with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
+					expander_collapsed = "",
+					expander_expanded = "",
+					expander_highlight = "NeoTreeExpander",
+				},
+			},
+		},
+		config = function(_, opts)
+			require("neo-tree").setup(opts)
+			vim.api.nvim_create_autocmd("TermClose", {
+				pattern = "*lazygit",
+				callback = function()
+					if package.loaded["neo-tree.sources.git_status"] then
+						require("neo-tree.sources.git_status").refresh()
+					end
+				end,
+			})
+		end,
+	},
 }
