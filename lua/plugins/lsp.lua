@@ -207,6 +207,7 @@ return {
                             tabSize = vim.o.tabstop
                         }
                     },
+                    handlebars = {},
                     completions = {completeFunctionCalls = true}
                 }
             })

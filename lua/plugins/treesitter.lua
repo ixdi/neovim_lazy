@@ -49,7 +49,8 @@ return {
                 enable_close = true,
                 enable_close_on_slash = true
             },
-            rainbow = {enable = true, extended_mode = true}
+            rainbow = {enable = true, extended_mode = true},
+            languages = {handlebars = {"html", "hbs"}}
         },
         config = function(_, opts)
             if type(opts.ensure_installed) == "table" then

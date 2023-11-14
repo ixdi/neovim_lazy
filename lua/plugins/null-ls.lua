@@ -1,25 +1,33 @@
 return {
-    {
+    {"davidmh/cspell.nvim"}, {
         "nvimtools/none-ls.nvim",
-        dependencies = {"nvim-lua/plenary.nvim"},
+        dependencies = {"nvim-lua/plenary.nvim", "davidmh/cspell.nvim"},
         config = function()
             local null_ls = require("null-ls")
             local formatting = null_ls.builtins.formatting
             local diagnostics = null_ls.builtins.diagnostics
             local code_actions = null_ls.builtins.code_actions
             local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+            local cspell = require("cspell")
             null_ls.setup({
                 debug = false,
                 sources = {
-                    code_actions.eslint_d, code_actions.gitsigns,
-                    code_actions.refactoring,
+                    code_actions.eslint_d.with({
+                        disabled_filetypes = {"typescript"}
+                    }), code_actions.gitsigns, code_actions.refactoring,
+                    code_actions.shellcheck, cspell.code_actions,
                     diagnostics.eslint_d
                         .with({disabled_filetypes = {"typescript"}}),
                     diagnostics.luacheck, diagnostics.markdownlint, -- diagnostics.misspell,
-                    -- formatting.autopep8, -- formatting.isort, -- formatting.black,
-                    formatting.stylua, formatting.fixjson,
-                    formatting.lua_format, formatting.markdownlint,
-                    formatting.prettierd, formatting.yamlfmt
+                    diagnostics.codespell, cspell.diagnostics,
+                    diagnostics.commitlint, diagnostics.editorconfig_checker,
+                    diagnostics.hadolint, diagnostics.flake8,
+                    diagnostics.misspell, diagnostics.mypy,
+                    diagnostics.pydocstyle, diagnostics.pylint,
+                    diagnostics.semgrep, diagnostics.write_good,
+                    -- formatting.autopep8,
+                    formatting.isort, formatting.black, formatting.stylua,
+                    formatting.fixjson, formatting.prettierd, formatting.yamlfmt
                 },
                 -- you can reuse a shared lspconfig on_attach callback here
                 on_attach = function(client, bufnr)
