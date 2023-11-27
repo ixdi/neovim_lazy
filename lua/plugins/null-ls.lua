@@ -32,7 +32,6 @@ return {
 					diagnostics.hadolint,
 					diagnostics.flake8,
 					diagnostics.misspell,
-					diagnostics.mypy,
 					diagnostics.pydocstyle,
 					diagnostics.pylint.with({
 						method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
