@@ -22,7 +22,7 @@ return {
 					cspell.code_actions,
 					diagnostics.eslint_d.with({ disabled_filetypes = { "typescript" } }),
 					diagnostics.luacheck,
-					diagnostics.markdownlint, -- diagnostics.misspell,
+					diagnostics.markdownlint,
 					diagnostics.codespell,
 					cspell.diagnostics.with({
 						disabled_filetypes = { "lua" },
@@ -34,8 +34,12 @@ return {
 					diagnostics.misspell,
 					diagnostics.mypy,
 					diagnostics.pydocstyle,
-					diagnostics.pylint,
-					diagnostics.semgrep,
+					diagnostics.pylint.with({
+						method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+					}),
+					diagnostics.semgrep.with({
+						method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+					}),
 					diagnostics.write_good,
 					-- formatting.autopep8,
 					formatting.isort,

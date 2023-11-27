@@ -40,7 +40,6 @@ return {
 			"folke/neodev.nvim",
 			"RRethy/vim-illuminate",
 			"hrsh7th/cmp-nvim-lsp",
-			"jose-elias-alvarez/typescript.nvim",
 		},
 		config = function()
 			-- Neodev setup before LSP config
@@ -198,6 +197,13 @@ return {
 				settings = {
 					editor = { linkedEditing = true },
 					typescript = {
+						format = {
+							indentSize = vim.o.shiftwidth,
+							convertTabsToSpaces = vim.o.expandtab,
+							tabSize = vim.o.tabstop,
+						},
+					},
+					typescriptreact = {
 						format = {
 							indentSize = vim.o.shiftwidth,
 							convertTabsToSpaces = vim.o.expandtab,
