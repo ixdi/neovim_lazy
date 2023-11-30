@@ -30,12 +30,7 @@ return {
 					diagnostics.commitlint,
 					diagnostics.editorconfig_checker,
 					diagnostics.hadolint,
-					diagnostics.flake8,
 					diagnostics.misspell,
-					diagnostics.pydocstyle,
-					diagnostics.pylint.with({
-						method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-					}),
 					diagnostics.semgrep.with({
 						method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
 					}),
