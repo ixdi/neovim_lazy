@@ -31,9 +31,9 @@ return {
 					diagnostics.editorconfig_checker,
 					diagnostics.hadolint,
 					diagnostics.misspell,
-					diagnostics.semgrep.with({
+					--[[ diagnostics.semgrep.with({
 						method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-					}),
+					}), ]]
 					diagnostics.write_good,
 					-- formatting.autopep8,
 					formatting.isort,
