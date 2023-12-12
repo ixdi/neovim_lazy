@@ -4,23 +4,13 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"antoinemadec/FixCursorHold.nvim",
-			"haydenmeade/neotest-jest",
+			"marilari88/neotest-vitest",
 			"nvim-neotest/neotest-python",
 		},
 		config = function()
 			require("neotest").setup({
 				adapters = {
-					require("neotest-jest")({
-						jestCommand = "jest --watch",
-						jestConfigFile = "custom.jest.config.ts",
-						discovery = {
-							enabled = false,
-						},
-						env = { CI = true },
-						cwd = function(path)
-							return vim.fn.getcwd()
-						end,
-					}),
+					require("neotest-vitest"),
 					require("neotest-python")({
 						-- Extra arguments for nvim-dap configuration
 						-- See https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for values
