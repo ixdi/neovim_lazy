@@ -13,14 +13,12 @@ return {
 			null_ls.setup({
 				debug = false,
 				sources = {
-					code_actions.eslint_d.with({
-						disabled_filetypes = { "typescript" },
-					}),
+					code_actions.eslint_d,
 					code_actions.gitsigns,
 					code_actions.refactoring,
 					code_actions.shellcheck,
 					cspell.code_actions,
-					diagnostics.eslint_d.with({ disabled_filetypes = { "typescript" } }),
+					diagnostics.eslint_d,
 					diagnostics.luacheck,
 					diagnostics.markdownlint,
 					diagnostics.codespell,
@@ -40,9 +38,7 @@ return {
 					formatting.black,
 					formatting.stylua,
 					formatting.fixjson,
-					formatting.prettierd.with({
-						disabled_filetypes = { "html" },
-					}),
+					formatting.prettierd,
 					formatting.yamlfmt,
 				},
 				-- you can reuse a shared lspconfig on_attach callback here
