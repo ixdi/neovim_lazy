@@ -9,11 +9,11 @@ return {
 					enabled = true,
 					auto_refresh = true,
 					keymap = {
-						jump_prev = "<C-j>",
-						jump_next = "<C-k>",
-						accept = "<CR>",
+						jump_prev = "<M-j>",
+						jump_next = "<M-k>",
+						accept = "<M-CR>",
 						refresh = "gr",
-						open = "<C-CR>",
+						open = "<M-o>",
 					},
 					layout = {
 						position = "bottom", -- | top | left | right
@@ -25,12 +25,12 @@ return {
 					auto_trigger = true,
 					debounce = 150,
 					keymap = {
-						accept = "<C-CR>",
+						accept = "<M-CR>",
 						accept_word = false,
 						accept_line = false,
-						next = "<C-j>",
-						prev = "<C-k>",
-						dismiss = "<C-d>",
+						next = "<M-j>",
+						prev = "<M-k>",
+						dismiss = "<M-d>",
 					},
 				},
 				filetypes = {
