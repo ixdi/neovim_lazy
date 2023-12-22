@@ -17,7 +17,7 @@ return {
 					code_actions.gitsigns,
 					-- code_actions.refactoring,
 					-- code_actions.shellcheck,
-					-- cspell.code_actions,
+					cspell.code_actions,
 					diagnostics.eslint_d,
 					diagnostics.luacheck,
 					diagnostics.markdownlint,
