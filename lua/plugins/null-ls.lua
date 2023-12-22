@@ -15,20 +15,20 @@ return {
 				sources = {
 					code_actions.eslint_d,
 					code_actions.gitsigns,
-					code_actions.refactoring,
-					code_actions.shellcheck,
-					cspell.code_actions,
+					-- code_actions.refactoring,
+					-- code_actions.shellcheck,
+					-- cspell.code_actions,
 					diagnostics.eslint_d,
 					diagnostics.luacheck,
 					diagnostics.markdownlint,
-					diagnostics.codespell,
+					-- diagnostics.codespell,
 					cspell.diagnostics.with({
 						disabled_filetypes = { "lua" },
 					}),
-					diagnostics.commitlint,
-					diagnostics.editorconfig_checker,
-					diagnostics.hadolint,
-					diagnostics.misspell,
+					-- diagnostics.commitlint,
+					-- diagnostics.editorconfig_checker,
+					-- diagnostics.hadolint,
+					-- diagnostics.misspell,
 					--[[ diagnostics.semgrep.with({
 						method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
 					}), ]]

@@ -250,6 +250,7 @@ return {
 				on_attach = on_attach,
 				capabilities = capabilities,
 				settings = {},
+				filetypes = { "typescriptreact" },
 			})
 		end,
 	},
