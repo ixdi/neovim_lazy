@@ -48,6 +48,12 @@ return {
 				"<cmd>MCstart<cr>",
 				desc = "Create a selection for selected text or word under the cursor",
 			},
+			{
+				mode = { "v", "n" },
+				"<leader>mc",
+				"<cmd>MCclear<cr>",
+				desc = "Clear selected text or words",
+			},
 		},
 	},
 }
