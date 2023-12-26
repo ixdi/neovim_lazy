@@ -215,7 +215,13 @@ return {
 
 			-- tsserver
 			require("lspconfig")["tsserver"].setup({
-				on_attach = on_attach,
+				on_attach = function(client)
+					-- Attach and configure vim-illuminate
+					require("illuminate").on_attach(client)
+					-- this is important, otherwise tsserver will format ts/js
+					-- files which we *really* don't want.
+					client.server_capabilities.documentFormattingProvider = false
+				end,
 				capabilities = capabilities,
 				settings = {
 					editor = { linkedEditing = true },
@@ -244,6 +250,8 @@ return {
 					completions = { completeFunctionCalls = true },
 				},
 			})
+
+			require("lspconfig")["biome"].setup({})
 
 			-- Tailwindcss
 			require("lspconfig")["tailwindcss"].setup({
