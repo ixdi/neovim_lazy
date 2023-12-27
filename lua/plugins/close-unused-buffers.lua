@@ -2,7 +2,7 @@ return {
 	{
 		"chrisgrieser/nvim-early-retirement",
 		config = function()
-			require("nvim-early-retirement").setup({
+			require("early-retirement").setup({
 				-- if a buffer has been inactive for this many minutes, close it
 				retirementAgeMins = 3,
 
