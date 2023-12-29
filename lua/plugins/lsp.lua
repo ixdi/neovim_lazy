@@ -251,8 +251,6 @@ return {
 				},
 			})
 
-			require("lspconfig")["biome"].setup({})
-
 			-- Tailwindcss
 			require("lspconfig")["tailwindcss"].setup({
 				on_attach = on_attach,

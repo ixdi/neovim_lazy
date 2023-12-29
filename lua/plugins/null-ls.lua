@@ -13,12 +13,12 @@ return {
 			null_ls.setup({
 				debug = false,
 				sources = {
-					--code_actions.eslint_d,
+					code_actions.eslint_d,
 					code_actions.gitsigns,
 					-- code_actions.refactoring,
 					-- code_actions.shellcheck,
 					cspell.code_actions,
-					-- diagnostics.eslint_d,
+					diagnostics.eslint_d,
 					diagnostics.luacheck,
 					diagnostics.markdownlint.with({
 						enabled_filetypes = { "markdown", "md", "markdown.mdx" },
@@ -36,19 +36,11 @@ return {
 					}), ]]
 					diagnostics.write_good,
 					-- formatting.autopep8,
-					formatting.biome,
-					--[[ formatting.biome.with({
-						args = {
-							"check",
-							"--apply-unsafe",
-							"$FILENAME",
-						},
-					}), ]]
 					formatting.isort,
 					formatting.black,
 					formatting.stylua,
 					formatting.fixjson,
-					--formatting.prettierd,
+					formatting.prettierd,
 					formatting.yamlfmt,
 				},
 				-- you can reuse a shared lspconfig on_attach callback here
