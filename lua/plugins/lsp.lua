@@ -150,7 +150,7 @@ return {
 			})
 
 			-- Python
-			require("lspconfig")["ruff_lsp"].setup({
+			--[[ require("lspconfig")["ruff_lsp"].setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
 				init_options = {
@@ -159,7 +159,7 @@ return {
 						args = {},
 					},
 				},
-			})
+			}) ]]
 			--[[ require("lspconfig")["pyright"].setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
@@ -175,7 +175,7 @@ return {
 					},
 				},
 			}) ]]
-			--[[ require("lspconfig")["pylsp"].setup({
+			require("lspconfig")["pylsp"].setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
 				settings = {
@@ -185,31 +185,54 @@ return {
 								enabled = true,
 								lineLength = 150, -- Black's line length
 							},
+							pylsp_mypy = {
+								enabled = true,
+								report_progress = true,
+								live_mode = false,
+							},
+							-- import sorting
+							pyls_isort = { enabled = true },
+							rope = { enabled = true },
+							ruff = {
+								enabled = true, -- Enable the plugin
+								executable = "/home/scortes/miniconda3/bin/ruff", -- Custom path to ruff
+								extendSelect = { "I" }, -- Rules that are additionally used by ruff
+								extendIgnore = { "C90" }, -- Rules that are additionally ignored by ruff
+								format = { "I" }, -- Rules that are marked as fixable by ruff that should be fixed when running textDocument/formatting
+								severities = { ["D212"] = "I" }, -- Optional table of rules where a custom severity is desired
+								unsafeFixes = false, -- Whether or not to offer unsafe fixes as code actions. Ignored with the "Fix All" action
+
+								-- Rules that are ignored when a pyproject.toml or ruff.toml is present:
+								lineLength = 150, -- Line length to pass to ruff checking and formatting
+								exclude = { "__about__.py" }, -- Files to be excluded by ruff checking
+								select = { "F" }, -- Rules to be enabled by ruff
+								ignore = { "D210" }, -- Rules to be ignored by ruff
+								perFileIgnores = { ["__init__.py"] = "CPY001" }, -- Rules that should be ignored for specific files
+								preview = false, -- Whether to enable the preview style linting and formatting.
+								targetVersion = "py310", -- The minimum python version to target (applies for both linting and formatting).
+							},
+							yapf = { enabled = true },
+							pydocstyle = { enabled = false },
+							flake8 = {
+								enabled = false,
+								lineLength = 150, -- Black's line length
+							},
 							autopep8 = { enabled = false },
-							yapf = { enabled = false },
-							flake8 = { enabled = false },
 							-- linter options
 							pylint = {
-								enabled = true,
+								enabled = false,
 								executable = "pylint",
 								format = { maxLineLength = 150 },
 							},
 							pyflakes = { enabled = false },
 							pycodestyle = { enabled = false },
 							-- type checker
-							pylsp_mypy = {
-								enabled = true,
-								report_progress = true,
-								live_mode = false,
-							},
 							-- auto-completion options
 							jedi_completion = { fuzzy = true },
-							-- import sorting
-							pyls_isort = { enabled = true },
 						},
 					},
 				},
-			}) ]]
+			})
 
 			-- Stylelint
 			require("lspconfig")["stylelint_lsp"].setup({
