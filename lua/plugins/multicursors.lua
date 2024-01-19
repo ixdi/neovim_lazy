@@ -9,7 +9,7 @@ return {
 		opts = {
 			DEBUG_MODE = false,
 			create_commands = true, -- create Multicursor user commands
-			updatetime = 50, -- selections get updated if this many milliseconds nothing is typed in the insert mode see :help updatetime
+			updatetime = 3000, -- selections get updated if in this milliseconds nothing is typed see :help updatetime
 			nowait = true, -- see :help :map-nowait
 			mode_keys = {
 				append = "a",
@@ -36,7 +36,7 @@ return {
 					-- the number of columns will depend on the size of your window.
 					column_count = nil,
 					-- maximum width of a column.
-					max_hint_length = 25,
+					max_hint_length = 30,
 				},
 			},
 		},
