@@ -123,6 +123,8 @@ return {
 
 				-- Attach and configure vim-illuminate
 				require("illuminate").on_attach(client)
+
+				client.server_capabilities.hoverProvider = false
 			end
 
 			-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
@@ -150,7 +152,7 @@ return {
 			})
 
 			-- Python
-			--[[ require("lspconfig")["ruff_lsp"].setup({
+			require("lspconfig")["ruff_lsp"].setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
 				init_options = {
@@ -159,7 +161,7 @@ return {
 						args = {},
 					},
 				},
-			}) ]]
+			})
 			--[[ require("lspconfig")["pyright"].setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
@@ -175,7 +177,7 @@ return {
 					},
 				},
 			}) ]]
-			require("lspconfig")["pylsp"].setup({
+			--[[ require("lspconfig")["pylsp"].setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
 				settings = {
@@ -232,7 +234,7 @@ return {
 						},
 					},
 				},
-			})
+			}) ]]
 
 			-- Stylelint
 			require("lspconfig")["stylelint_lsp"].setup({

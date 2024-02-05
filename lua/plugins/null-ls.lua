@@ -60,8 +60,8 @@ return {
 					}), ]]
 					diagnostics.write_good,
 					-- formatting.autopep8,
-					formatting.isort,
-					formatting.black,
+					-- formatting.isort,
+					-- formatting.black,
 					-- formatting.ruff,
 					formatting.stylua,
 					formatting.fixjson,
