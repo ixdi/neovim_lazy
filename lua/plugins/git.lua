@@ -1,6 +1,5 @@
 -- Git related plugins
 return {
-	{ "lewis6991/gitsigns.nvim", opts = {} },
 	{
 		"akinsho/git-conflict.nvim",
 		commit = "2957f74",
