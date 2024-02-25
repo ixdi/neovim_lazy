@@ -68,6 +68,7 @@ return {
 				desc = "Code incommings",
 			},
 			{ "<leader>b", ":Telescope buffers<cr>", desc = "Buffers" },
+			{ "<leader>s", ":Telescope lsp_document_symbols<cr>", desc = "Symbols" },
 			{
 				"<leader>coc",
 				":Telescope lsp_outgoing_calls<cr>",

@@ -246,7 +246,7 @@ return {
 			})
 
 			-- tsserver
-			require("lspconfig")["tsserver"].setup({
+			--[[ require("lspconfig")["tsserver"].setup({
 				on_attach = function(client)
 					-- Attach and configure vim-illuminate
 					require("illuminate").on_attach(client)
@@ -281,6 +281,22 @@ return {
 					handlebars = {},
 					completions = { completeFunctionCalls = true },
 				},
+			}) ]]
+
+			-- biome
+			require("lspconfig")["biome"].setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+				settings = {},
+				filetypes = {
+					"javascript",
+					"javascriptreact",
+					"json",
+					"jsonc",
+					"typescript",
+					"typescript.tsx",
+					"typescriptreact",
+				},
 			})
 
 			-- Tailwindcss
@@ -289,6 +305,21 @@ return {
 				capabilities = capabilities,
 				settings = {},
 				filetypes = { "typescriptreact" },
+			})
+
+			-- jsonls
+			require("lspconfig")["jsonls"].setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+				settings = {},
+				filetypes = { "json", "jsonc" },
+			})
+
+			-- selene
+			require("lspconfig")["selene"].setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+				settings = {},
 			})
 		end,
 	},

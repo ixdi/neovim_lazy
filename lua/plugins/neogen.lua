@@ -6,7 +6,7 @@ return {
 		-- uncomment next line if you want to follow only stable versions
 		-- version = "*"
 		--
-		keys = { { "<leader>s", ":Neogen<cr>", desc = "Comment code like jsDoc" } },
+		keys = { { "<leader>doc", ":Neogen<cr>", desc = "Comment code like jsDoc" } },
 		opts = {
 			languages = {
 				lua = { template = { annotation_convention = "emmylua" } },
