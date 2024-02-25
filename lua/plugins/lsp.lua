@@ -246,7 +246,7 @@ return {
 			})
 
 			-- tsserver
-			--[[ require("lspconfig")["tsserver"].setup({
+			require("lspconfig")["tsserver"].setup({
 				on_attach = function(client)
 					-- Attach and configure vim-illuminate
 					require("illuminate").on_attach(client)
@@ -254,7 +254,7 @@ return {
 					-- files which we *really* don't want.
 					client.server_capabilities.documentFormattingProvider = false
 				end,
-				capabilities = capabilities,
+				--[[ capabilities = capabilities,
 				settings = {
 					editor = { linkedEditing = true },
 					typescript = {
@@ -280,12 +280,12 @@ return {
 					},
 					handlebars = {},
 					completions = { completeFunctionCalls = true },
-				},
-			}) ]]
+				}, ]]
+			})
 
 			-- biome
 			require("lspconfig")["biome"].setup({
-				on_attach = on_attach,
+				--[[ on_attach = on_attach,
 				capabilities = capabilities,
 				settings = {},
 				filetypes = {
@@ -296,7 +296,7 @@ return {
 					"typescript",
 					"typescript.tsx",
 					"typescriptreact",
-				},
+				}, ]]
 			})
 
 			-- Tailwindcss

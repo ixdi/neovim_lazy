@@ -64,10 +64,20 @@ return {
 					formatting.isort,
 					formatting.black,
 					-- formatting.fixjson, -- deprecated, use jsonls
-					formatting.prettierd,
+					-- formatting.prettierd,
 					-- formatting.ruff, -- deprecated, use ruff lsp
 					formatting.stylua,
 					formatting.yamlfmt,
+					formatting.biome.with({
+						args = {
+							"check",
+							"--apply-unsafe",
+							"--formatter-enabled=true",
+							"--organize-imports-enabled=true",
+							"--skip-errors",
+							"$FILENAME",
+						},
+					}),
 				},
 				-- you can reuse a shared lspconfig on_attach callback here
 				on_attach = function(client, bufnr)
