@@ -46,6 +46,16 @@ for opt, val in pairs(opts) do
 	vim.o[opt] = val
 end
 
+if vim.g.neovide then
+	-- Put anything you want to happen only in Neovide here
+	vim.o.guifont = "Source Code Pro:h12" -- text below applies for VimScript
+	vim.g.neovide_theme = "auto"
+	vim.g.neovide_unlink_border_highlights = false
+	vim.g.neovide_fullscreen = true
+	vim.g.neovide_cursor_animation_length = 0
+	vim.g.neovide_cursor_antialiasing = true
+end
+
 vim.api.nvim_set_option("clipboard", "unnamedplus")
 
 -- Set other options
