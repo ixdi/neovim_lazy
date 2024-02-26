@@ -315,12 +315,12 @@ return {
 				filetypes = { "json", "jsonc" },
 			})
 
-			-- selene
+			--[[ -- selene
 			require("lspconfig")["selene"].setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
 				settings = {},
-			})
+			}) ]]
 		end,
 	},
 }

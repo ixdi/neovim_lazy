@@ -16,14 +16,13 @@ return {
 				replace = "DiffDelete",
 			},
 		},
-        -- stylua: ignore
-        keys = {
-            {
-                "<leader>fr",
-                function() require("spectre").open() end,
-                desc = "Replace in files (Spectre)"
-            }
-        }
-,
+    -- stylua: ignore
+    keys = {
+      {
+        "<leader>fr",
+        function() require("spectre").open() end,
+        desc = "Replace in files (Spectre)"
+      }
+    },
 	},
 }
