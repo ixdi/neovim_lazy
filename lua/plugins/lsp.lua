@@ -5,6 +5,10 @@ return {
 		"williamboman/mason.nvim",
 		config = function()
 			require("mason").setup({
+				providers = {
+					"mason.providers.registry-api",
+					"mason.providers.client",
+				},
 				ui = {
 					check_outdated_packages_on_open = true,
 					icons = {

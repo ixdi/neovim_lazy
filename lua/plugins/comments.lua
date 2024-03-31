@@ -29,9 +29,9 @@ return {
 				---LHS of extra mappings
 				extra = {
 					---Add comment on the line above
-					above = "<leader>cu",
+					above = "<leader>ca",
 					---Add comment on the line below
-					below = "<leader>cd",
+					below = "<leader>cb",
 					---Add comment at the end of line
 					eol = "<leader>ce",
 				},
@@ -57,27 +57,26 @@ return {
 		cmd = { "TodoTrouble", "TodoTelescope" },
 		event = { "BufReadPost", "BufNewFile" },
 		config = true,
-        -- stylua: ignore
-        keys = {
-            {
-                "<leader>tn",
-                function() require("todo-comments").jump_next() end,
-                desc = "Next todo comment"
-            }, {
-                "<leader>tp",
-                function() require("todo-comments").jump_prev() end,
-                desc = "Previous todo comment"
-            }, {"<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)"},
-            {
-                "<leader>xT",
-                "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>",
-                desc = "Todo/Fix/Fixme (Trouble)"
-            }, {"<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo"}, {
-                "<leader>sT",
-                "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>",
-                desc = "Todo/Fix/Fixme"
-            }
+      -- stylua: ignore
+      keys = {
+        {
+            "<leader>tn",
+            function() require("todo-comments").jump_next() end,
+            desc = "Next todo comment"
+        }, {
+            "<leader>tp",
+            function() require("todo-comments").jump_prev() end,
+            desc = "Previous todo comment"
+        }, {"<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)"},
+        {
+            "<leader>xT",
+            "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>",
+            desc = "Todo/Fix/Fixme (Trouble)"
+        }, {"<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo"}, {
+            "<leader>sT",
+            "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>",
+            desc = "Todo/Fix/Fixme"
         }
-,
+      },
 	},
 }
