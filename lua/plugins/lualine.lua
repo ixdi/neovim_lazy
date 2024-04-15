@@ -3,6 +3,7 @@ return {
 	-- statusline
 	{
 		"nvim-lualine/lualine.nvim",
+		depends = { "AndreM222/copilot-lualine" },
 		event = "VeryLazy",
 		opts = function()
 			local icons = require("config").icons
@@ -18,6 +19,9 @@ return {
 					lualine_a = { "mode" },
 					lualine_b = { "branch" },
 					lualine_c = {
+						{
+							"copilot",
+						},
 						{
 							"diagnostics",
 							symbols = {
