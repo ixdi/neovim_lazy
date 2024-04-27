@@ -4,7 +4,7 @@ return {
 		-- then update the package.json @node/type to the right version of your system node
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-		build = "cd app && yarn install",
+		build = "cd app && git checkout -- . && yarn install",
 		init = function()
 			vim.g.mkdp_filetypes = { "markdown" }
 		end,

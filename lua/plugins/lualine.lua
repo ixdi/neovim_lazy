@@ -3,7 +3,7 @@ return {
 	-- statusline
 	{
 		"nvim-lualine/lualine.nvim",
-		depends = { "AndreM222/copilot-lualine" },
+		dependencies = { "AndreM222/copilot-lualine" },
 		event = "VeryLazy",
 		opts = function()
 			local icons = require("config").icons
