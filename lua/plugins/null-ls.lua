@@ -19,17 +19,13 @@ return {
 					-- code_actions.refactoring,
 					-- code_actions.shellcheck,
 					cspell.code_actions.with({
-						disabled_filetypes = {
-							"markdown",
-							"md",
-							"markdown.mdx",
-							"txt",
-							"text",
-							"lua",
-							"json",
-							"sh",
-							"bash",
-							"gitconfig",
+						filetypes = {
+							"javascript",
+							"python",
+							"typescript",
+							"javascriptreact",
+							"typescriptreact",
+							"html",
 						},
 					}),
 					-- diagnostics.eslint_d, -- deprecated use eslint-language-server from none-ls-extras
@@ -39,17 +35,13 @@ return {
 					}),
 					-- diagnostics.codespell,
 					cspell.diagnostics.with({
-						disabled_filetypes = {
-							"markdown",
-							"md",
-							"markdown.mdx",
-							"txt",
-							"text",
-							"lua",
-							"json",
-							"sh",
-							"bash",
-							"gitconfig",
+						filetypes = {
+							"javascript",
+							"python",
+							"typescript",
+							"javascriptreact",
+							"typescriptreact",
+							"html",
 						},
 					}),
 					-- diagnostics.commitlint,
@@ -68,7 +60,7 @@ return {
 					-- formatting.ruff, -- deprecated, use ruff lsp
 					formatting.stylua,
 					formatting.yamlfmt,
-					formatting.biome.with({
+					--[[ formatting.biome.with({
 						args = {
 							"check",
 							"--apply-unsafe",
@@ -77,7 +69,7 @@ return {
 							"--skip-errors",
 							"$FILENAME",
 						},
-					}),
+					}), ]]
 				},
 				-- you can reuse a shared lspconfig on_attach callback here
 				on_attach = function(client, bufnr)
