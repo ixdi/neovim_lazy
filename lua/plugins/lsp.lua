@@ -288,8 +288,8 @@ return {
 			})
 
 			-- biome
-			require("lspconfig")["biome"].setup({
-				--[[ on_attach = on_attach,
+			-- require("lspconfig")["biome"].setup({
+			--[[ on_attach = on_attach,
 				capabilities = capabilities,
 				settings = {},
 				filetypes = {
@@ -301,7 +301,7 @@ return {
 					"typescript.tsx",
 					"typescriptreact",
 				}, ]]
-			})
+			-- })
 
 			-- Tailwindcss
 			require("lspconfig")["tailwindcss"].setup({
