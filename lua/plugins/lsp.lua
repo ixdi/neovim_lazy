@@ -28,7 +28,7 @@ return {
 				ensure_installed = {
 					--[[ "ansiblels", "bashls", "cssls", "dockerls",
                     "docker_compose_language_service", "emmet_ls", "jsonls",
-                    "lua_ls", "html", "marksman", "pylsp", "stylelint_lsp",
+                    "lua_ls", "html", "marksman", "ruff_lsp", "stylelint_lsp",
                     "markdownlint", "markuplint", "cssls", "dockerls",
                     "terraformls", "tsserver", "yamlls", "volar", "prettierd" ]]
 				},
@@ -133,6 +133,13 @@ return {
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
+			require("lspconfig")["rust_analyzer"].setup({
+				-- Server-specific settings. See `:help lspconfig-setup`
+				settings = {
+					["rust-analyzer"] = {},
+				},
+			})
+
 			-- Lua
 			require("lspconfig")["lua_ls"].setup({
 				on_attach = on_attach,
@@ -153,86 +160,16 @@ return {
 				},
 			})
 
-			-- Python
-			--[[ require("lspconfig")["ruff_lsp"].setup({
+			-- Configure `ruff-lsp`.
+			-- See: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
+			-- For the default config, along with instructions on how to customize the settings
+			require("lspconfig")["ruff_lsp"].setup({
 				on_attach = on_attach,
+				capabilities = capabilities,
 				init_options = {
 					settings = {
 						-- Any extra CLI arguments for `ruff` go here.
 						args = {},
-					},
-				},
-			}) ]]
-			--[[ require("lspconfig")["pyright"].setup({
-				on_attach = on_attach,
-				capabilities = capabilities,
-				settings = {
-					autoImportCompletion = true,
-					python = {
-						analysis = {
-							autoSearchPaths = true,
-							diagnosticMode = "diagnosticMode",
-							useLibraryCodeForTypes = true,
-							typeCheckingMode = "strict",
-						},
-					},
-				},
-			}) ]]
-			require("lspconfig")["pylsp"].setup({
-				on_attach = on_attach,
-				capabilities = capabilities,
-				settings = {
-					pylsp = {
-						plugins = {
-							black = {
-								enabled = true,
-								lineLength = 150, -- Black's line length
-							},
-							pylsp_mypy = {
-								enabled = true,
-								report_progress = true,
-								live_mode = false,
-							},
-							-- import sorting
-							pyls_isort = { enabled = true },
-							rope = { enabled = true },
-							ruff = {
-								enabled = true, -- Enable the plugin
-								executable = "/home/scortes/miniconda3/bin/ruff", -- Custom path to ruff
-								extendSelect = { "I" }, -- Rules that are additionally used by ruff
-								extendIgnore = { "C90" }, -- Rules that are additionally ignored by ruff
-								format = { "I" }, -- Rules that are marked as fixable by ruff that should be fixed when running textDocument/formatting
-								severities = { ["D212"] = "I" }, -- Optional table of rules where a custom severity is desired
-								unsafeFixes = false, -- Whether or not to offer unsafe fixes as code actions. Ignored with the "Fix All" action
-
-								-- Rules that are ignored when a pyproject.toml or ruff.toml is present:
-								lineLength = 150, -- Line length to pass to ruff checking and formatting
-								exclude = { "__about__.py" }, -- Files to be excluded by ruff checking
-								select = { "F" }, -- Rules to be enabled by ruff
-								ignore = { "D210" }, -- Rules to be ignored by ruff
-								perFileIgnores = { ["__init__.py"] = "CPY001" }, -- Rules that should be ignored for specific files
-								preview = false, -- Whether to enable the preview style linting and formatting.
-								targetVersion = "py310", -- The minimum python version to target (applies for both linting and formatting).
-							},
-							yapf = { enabled = true },
-							pydocstyle = { enabled = false },
-							flake8 = {
-								enabled = false,
-								lineLength = 150, -- Black's line length
-							},
-							autopep8 = { enabled = false },
-							-- linter options
-							pylint = {
-								enabled = false,
-								executable = "pylint",
-								format = { maxLineLength = 150 },
-							},
-							pyflakes = { enabled = false },
-							pycodestyle = { enabled = false },
-							-- type checker
-							-- auto-completion options
-							jedi_completion = { fuzzy = true },
-						},
 					},
 				},
 			})

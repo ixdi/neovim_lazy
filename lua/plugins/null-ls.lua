@@ -53,8 +53,8 @@ return {
 					}), ]]
 					diagnostics.write_good,
 					-- formatting.autopep8, -- deprecated, use ruff lsp
-					formatting.isort,
-					formatting.black,
+					-- formatting.isort,
+					-- formatting.black,
 					-- formatting.fixjson, -- deprecated, use jsonls
 					-- formatting.prettierd,
 					-- formatting.ruff, -- deprecated, use ruff lsp
