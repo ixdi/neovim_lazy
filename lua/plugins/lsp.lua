@@ -248,6 +248,14 @@ return {
 				filetypes = { "typescriptreact" },
 			})
 
+			-- MArksman
+			require("lspconfig")["marksman"].setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+				settings = {},
+				filetypes = { "markdown", "md" },
+			})
+
 			-- jsonls
 			require("lspconfig")["jsonls"].setup({
 				on_attach = on_attach,
