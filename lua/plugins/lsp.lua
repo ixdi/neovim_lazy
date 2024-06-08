@@ -256,6 +256,11 @@ return {
 				filetypes = { "markdown", "md" },
 			})
 
+			require("lspconfig")["markdown_oxide"].setup({
+				capabilities = capabilities, -- again, ensure that capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
+				on_attach = on_attach, -- configure your on attach config
+			})
+
 			-- jsonls
 			require("lspconfig")["jsonls"].setup({
 				on_attach = on_attach,

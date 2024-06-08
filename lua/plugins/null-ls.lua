@@ -30,9 +30,9 @@ return {
 					}),
 					-- diagnostics.eslint_d, -- deprecated use eslint-language-server from none-ls-extras
 					-- diagnostics.luacheck, -- use selene / available in gbprod/none-ls-luacheck.nvim
-					--[[ diagnostics.markdownlint.with({
+					diagnostics.markdownlint.with({
 						enabled_filetypes = { "markdown", "md", "markdown.mdx" },
-					}), ]]
+					}),
 					-- diagnostics.codespell,
 					cspell.diagnostics.with({
 						filetypes = {
