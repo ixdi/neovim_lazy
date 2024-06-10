@@ -26,11 +26,9 @@ return {
 		config = function()
 			require("mason-lspconfig").setup({
 				ensure_installed = {
-					--[[ "ansiblels", "bashls", "cssls", "dockerls",
-                    "docker_compose_language_service", "emmet_ls", "jsonls",
-                    "lua_ls", "html", "marksman", "ruff_lsp", "stylelint_lsp",
-                    "markdownlint", "markuplint", "cssls", "dockerls",
-                    "terraformls", "tsserver", "yamlls", "volar", "prettierd" ]]
+					--[[ "ansiblels", "bashls", "dockerls", "docker_compose_language_service", "eslint_lsp", "eslint_d", "jsonls",
+          "lua_ls", "html", "marksman", "ruff_lsp", "ruff_analyzer", "stylelint_lsp", "markdownlint", "markuplint",
+          "terraformls", "tsserver", "yamlls", "volar", "prettierd" ]]
 				},
 			})
 		end,
@@ -160,6 +158,12 @@ return {
 				},
 			})
 
+			-- bashls
+			require("lspconfig")["bashls"].setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+			})
+
 			-- Configure `ruff-lsp`.
 			-- See: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
 			-- For the default config, along with instructions on how to customize the settings
@@ -240,6 +244,20 @@ return {
 				}, ]]
 			-- })
 
+			-- eslint
+			require("lspconfig")["eslint"].setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+				settings = {},
+				filetypes = {
+					"javascript",
+					"javascriptreact",
+					"typescript",
+					"typescript.tsx",
+					"typescriptreact",
+				},
+			})
+
 			-- Tailwindcss
 			require("lspconfig")["tailwindcss"].setup({
 				on_attach = on_attach,
@@ -269,12 +287,31 @@ return {
 				filetypes = { "json", "jsonc" },
 			})
 
-			--[[ -- selene
-			require("lspconfig")["selene"].setup({
+			-- yamlls
+			require("lspconfig")["yamlls"].setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+			})
+
+			-- html
+			require("lspconfig")["html"].setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
 				settings = {},
-			}) ]]
+				filetypes = { "html" },
+			})
+
+			-- dockerls
+			require("lspconfig")["dockerls"].setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+			})
+
+			-- temmaformls
+			require("lspconfig")["terraformls"].setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+			})
 		end,
 	},
 }
