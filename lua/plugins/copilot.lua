@@ -10,10 +10,10 @@ return {
 					enabled = true,
 					auto_refresh = true,
 					keymap = {
-						jump_prev = "<M-j>",
-						jump_next = "<M-k>",
+						jump_next = "<M-j>",
+						jump_prev = "<M-k>",
 						accept = "<M-CR>",
-						refresh = "gr",
+						refresh = "<M-r>",
 						open = "<M-o>",
 					},
 					layout = {
@@ -27,8 +27,8 @@ return {
 					debounce = 150,
 					keymap = {
 						accept = "<M-CR>",
-						accept_word = false,
-						accept_line = false,
+						accept_word = "<M-w>",
+						accept_line = "<M-l>",
 						next = "<M-j>",
 						prev = "<M-k>",
 						dismiss = "<M-d>",
@@ -45,10 +45,18 @@ return {
 				},
 				copilot_node_command = "node", -- Node.js version must be > 18.x
 				server_opts_overrides = {},
+				copilot_no_tab_map = true,
 			})
 		end,
 		keys = {
 			{ "<leader>cp", "<Cmd>Copilot panel<cr>", desc = "Copilot panel" },
+			{ "<M><cr>", "<Plug>(copilot-accept)" },
+			{ "<M>w", "<Plug>(copilot-accept-word)" },
+			{ "<M>l", "<Plug>(copilot-accept-line)" },
+			{ "<M>s", "<Plug>(copilot-suggest)" },
+			{ "<M>d", "<Plug>(copilot-dismiss)" },
+			{ "<M>j", "<Plug>(copilot-next)" },
+			{ "<M>k", "<Plug>(copilot-previous)" },
 		},
 	},
 }
