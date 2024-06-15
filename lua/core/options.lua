@@ -56,8 +56,11 @@ if vim.g.neovide then
 	vim.g.neovide_cursor_antialiasing = true
 end
 
-vim.api.nvim_set_option("clipboard", "unnamedplus")
-
 -- Set other options
 local colorscheme = require("helpers.colorscheme")
 vim.cmd.colorscheme(colorscheme)
+
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+	pattern = { "*" },
+	command = [[%s/\s\+$//e]],
+})

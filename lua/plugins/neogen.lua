@@ -10,7 +10,7 @@ return {
 		opts = {
 			languages = {
 				lua = { template = { annotation_convention = "emmylua" } },
-				python = { template = { annotation_convention = "reST" } },
+				python = { template = { annotation_convention = "google_docstrings" } },
 				javascript = { template = { annotation_convention = "jsdoc" } },
 				javascriptreact = { template = { annotation_convention = "jsdoc" } },
 				typescript = { template = { annotation_convention = "jsdoc" } },

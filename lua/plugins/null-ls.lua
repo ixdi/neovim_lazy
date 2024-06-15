@@ -52,12 +52,12 @@ return {
 						method = none_ls.methods.DIAGNOSTICS_ON_SAVE,
 					}), ]]
 					diagnostics.write_good,
-					-- formatting.autopep8, -- deprecated, use ruff lsp
+					-- formatting.autopep8, -- deprecated, use ruff
 					-- formatting.isort,
 					-- formatting.black,
 					-- formatting.fixjson, -- deprecated, use jsonls
 					-- formatting.prettierd,
-					-- formatting.ruff, -- deprecated, use ruff lsp
+					-- formatting.ruff, -- deprecated, use ruff
 					formatting.stylua,
 					formatting.yamlfmt,
 					--[[ formatting.biome.with({
@@ -97,7 +97,7 @@ return {
 	},
 }
 
---[[ 
+--[[
   deleted:    code_actions/eslint.lua        (use eslint-language-server / available in none-ls-extras.nvim)
 	deleted:    code_actions/eslint_d.lua      (use eslint-language-server / available in none-ls-extras.nvim)
 	deleted:    code_actions/ltrs.lua          (use ltex-ls)
@@ -178,5 +178,5 @@ return {
 	deleted:    formatting/xmllint.lua         (use lemminx)
 	deleted:    formatting/xq.lua              (use lemminx)
 	deleted:    formatting/yq.lua              (use yamlls)
-	deleted:    formatting/zigfmt.lua          (use zls) 
+	deleted:    formatting/zigfmt.lua          (use zls)
 ]]
