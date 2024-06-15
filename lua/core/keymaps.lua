@@ -12,10 +12,6 @@ map("n", ",qa", "<cmd>qa!<cr>", "Quit all")
 -- Diagnostic keymaps
 map("n", ",e", vim.diagnostic.open_float, "Show diagnostics under cursor")
 
--- Easier access to beginning and end of lines
-map("n", "<M-h>", "^", "Go to beginning of line")
-map("n", "<M-l>", "$", "Go to end of line")
-
 -- Better window navigation
 map("n", "<C-h>", "<C-w><C-h>", "Navigate windows to the left")
 map("n", "<C-j>", "<C-w><C-j>", "Navigate windows down")
