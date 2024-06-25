@@ -400,6 +400,13 @@ return {
 				on_attach = on_attach,
 				capabilities = capabilities,
 			})
+
+			-- gherkin
+			require("lspconfig")["cucumber_language_server"].setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+				filetypes = { "cucumber", "feature" },
+			})
 		end,
 	},
 }
