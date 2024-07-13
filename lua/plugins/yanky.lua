@@ -1,28 +1,27 @@
 vim.g.clipboard = {
 	name = "xsel_override",
-	--[[ copy = {
+	copy = {
 		["+"] = "xsel --input --clipboard",
 		["*"] = "xsel --input --primary",
 	},
 	paste = {
 		["+"] = "xsel --output --clipboard",
 		["*"] = "xsel --output --primary",
-	}, ]]
-	copy = {
+	},
+	--[[ copy = {
 		["+"] = "wl-copy",
 		["*"] = "wl-copy",
 	},
 	paste = {
 		["+"] = "wl-paste",
 		["*"] = "wl-paste",
-	},
+	}, ]]
 	cache_enabled = 1,
 }
 
 return {
 	{
 		"gbprod/yanky.nvim",
-		dependencies = { { "kkharji/sqlite.lua", enabled = true } },
 		opts = function()
 			local mapping = require("yanky.telescope.mapping")
 			local mappings = mapping.get_defaults()
@@ -30,12 +29,12 @@ return {
 			return {
 				highlight = { on_put = true, on_yank = true, timer = 500 },
 				ring = {
-					history_length = 200,
-					storage = "sqlite",
-					storage_path = vim.fn.stdpath("data") .. "/databases/yanky.db",
+					history_length = 300,
+					storage = "shada",
 					sync_with_numbered_registers = true,
 					cancel_event = "update",
 					ignore_registers = { "_" },
+					update_register_on_cycle = false,
 				},
 				picker = {
 					telescope = {
@@ -44,7 +43,13 @@ return {
 					},
 				},
 				preserve_cursor_position = { enabled = true },
-				system_clipboard = { sync_with_ring = true },
+				system_clipboard = {
+					sync_with_ring = true,
+					clipboard_register = "unnamedplus",
+				},
+				textobj = {
+					enabled = true,
+				},
 			}
 		end,
 		keys = {

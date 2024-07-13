@@ -6,6 +6,7 @@ local opts = {
 	backup = false, -- creates a backup file
 	cmdheight = 1, -- more space in the neovim command line for displaying messages
 	conceallevel = 0, -- so that `` is visible in markdown files
+	clipboard = "unnamedplus", -- copy/paste to system clipboard
 	fileencoding = "utf-8", -- the encoding written to a file
 	hlsearch = true, -- highlight all matches on previous search pattern
 	ignorecase = true, -- ignore case in search patterns
