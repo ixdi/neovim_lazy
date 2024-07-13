@@ -27,17 +27,23 @@ return {
 					g = true, -- bindings for prefixed with g
 				},
 			},
+			---@type false | "classic" | "modern" | "helix"
+			preset = "modern",
+			delay = function(ctx)
+				return ctx.plugin and 0 or 200
+			end,
+			expand = 1, -- expand groups when <= n mappings
 			spec = {
 				{ "<leader><tab>", group = "tabs" },
 				{ "<leader>bu", group = "buffer" },
 				{ "<leader>co", group = "code" },
-				{ "<leader>fi", group = "file/find" },
+				{ ",fi", group = "file/find" },
 				{ "<leader>fix", group = "diagnostics/quickfix" },
 				{ "<leader>gh", group = "hunks" },
 				{ "<leader>git", group = "git" },
 				{ "<leader>qu", group = "quit/session" },
 				{ "<leader>sr", group = "search" },
-				{ "<leader>ui", group = "ui" },
+				{ ",ui", group = "ui" },
 				{ "<leader>win", group = "windows" },
 				{ "[", group = "prev" },
 				{ "]", group = "next" },
@@ -45,7 +51,12 @@ return {
 				{ "gz", group = "surround" },
 			},
 		},
-		keys = {
+		--[[ config = function(_, opts)
+			local wk = require("which-key")
+			wk.setup(opts)
+			wk.register(opts.defaults)
+		end, ]]
+		--[[ keys = {
 			{
 				"<leader>?",
 				function()
@@ -53,6 +64,6 @@ return {
 				end,
 				desc = "Buffer Local Keymaps (which-key)",
 			},
-		},
+		}, ]]
 	},
 }

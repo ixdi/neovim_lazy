@@ -42,7 +42,7 @@ return {
 				desc = "Explorer NeoTree (root dir)",
 			},
 			{
-				"<leader>eb",
+				",eb",
 				function()
 					require("neo-tree.command").execute({
 						source = "buffers",
@@ -53,7 +53,7 @@ return {
 				desc = "Explorer NeoTree (buffers)",
 			},
 			{
-				"<leader>es",
+				",es",
 				":Neotree document_symbols<cr>",
 				desc = "Explorer NeoTree (document_symbols)",
 			},

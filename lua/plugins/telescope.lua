@@ -16,7 +16,7 @@ return {
 		end,
 		keys = {
 			{
-				"<leader>dc",
+				",dc",
 				":lua vim.lsp.buf.declaration()<cr>",
 				desc = "Buffer declaration",
 			},
@@ -41,9 +41,9 @@ return {
 				desc = "Code references",
 			},
 			{ "<leader>k", ":Telescope keymaps<cr>", desc = "Keymaps" },
-			{ "<leader>un", ":Telescope undo<cr>", desc = "Telescope undo" },
+			{ ",un", ":Telescope undo<cr>", desc = "Telescope undo" },
 			{
-				"<leader>ee",
+				",ed",
 				":Telescope diagnostics<cr>",
 				desc = "Code diagnostics",
 			},
@@ -74,12 +74,12 @@ return {
 				":Telescope lsp_outgoing_calls<cr>",
 				desc = "Code outgoings",
 			},
-			{ "<leader>fi", ":Telescope find_files<cr>", desc = "Find files" },
+			{ ",f", ":Telescope find_files<cr>", desc = "Find files" },
 			{ "<leader>u", ":Telescope oldfiles<cr>", desc = "Recent files" },
 			{ "<leader>f", ":Telescope live_grep<cr>", desc = "Live grep" },
 			{ "<leader>l", ":Telescope resume<cr>", desc = "Resume" },
 			{
-				"<leader>ex",
+				"<C-leader>ex",
 				":Telescope file_browser path=%:p:h select_buffer=true<cr>",
 				desc = "File browser",
 			},

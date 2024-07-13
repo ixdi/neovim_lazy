@@ -19,7 +19,7 @@ return {
     -- stylua: ignore
     keys = {
       {
-        "<leader>fr",
+        ",r",
         function() require("spectre").open() end,
         desc = "Replace in files (Spectre)"
       }
