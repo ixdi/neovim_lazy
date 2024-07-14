@@ -37,13 +37,13 @@ return {
 				{ "<leader><tab>", group = "tabs" },
 				{ "<leader>bu", group = "buffer" },
 				{ "<leader>co", group = "code" },
-				{ ",fi", group = "file/find" },
+				{ "<leader>fi", group = "file/find" },
 				{ "<leader>fix", group = "diagnostics/quickfix" },
 				{ "<leader>gh", group = "hunks" },
 				{ "<leader>git", group = "git" },
 				{ "<leader>qu", group = "quit/session" },
 				{ "<leader>sr", group = "search" },
-				{ ",ui", group = "ui" },
+				{ "<leader>ui", group = "ui" },
 				{ "<leader>win", group = "windows" },
 				{ "[", group = "prev" },
 				{ "]", group = "next" },
@@ -51,12 +51,7 @@ return {
 				{ "gz", group = "surround" },
 			},
 		},
-		--[[ config = function(_, opts)
-			local wk = require("which-key")
-			wk.setup(opts)
-			wk.register(opts.defaults)
-		end, ]]
-		--[[ keys = {
+		keys = {
 			{
 				"<leader>?",
 				function()
@@ -64,6 +59,6 @@ return {
 				end,
 				desc = "Buffer Local Keymaps (which-key)",
 			},
-		}, ]]
+		},
 	},
 }
