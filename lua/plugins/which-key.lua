@@ -2,7 +2,7 @@ return {
 	-- which-key helps you remember key bindings by showing a popup
 	-- with the active keybindings of the command you started typing.
 	{ "echasnovski/mini.icons", version = false },
-	--[[ {
+	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
 		opts = {
@@ -60,5 +60,5 @@ return {
 				desc = "Buffer Local Keymaps (which-key)",
 			},
 		},
-	}, ]]
+	},
 }

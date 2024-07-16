@@ -9,7 +9,6 @@ return {
 			local formatting = none_ls.builtins.formatting
 			local diagnostics = none_ls.builtins.diagnostics
 			local code_actions = none_ls.builtins.code_actions
-			local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 			local cspell = require("cspell")
 			none_ls.setup({
 				debug = false,
@@ -19,13 +18,17 @@ return {
 					-- code_actions.refactoring,
 					-- code_actions.shellcheck,
 					cspell.code_actions.with({
-						filetypes = {
-							"javascript",
-							"python",
-							"typescript",
-							"javascriptreact",
-							"typescriptreact",
-							"html",
+						disabled_filetypes = {
+							"markdown",
+							"md",
+							"markdown.mdx",
+							"txt",
+							"text",
+							"lua",
+							"json",
+							"sh",
+							"bash",
+							"gitconfig",
 						},
 					}),
 					-- diagnostics.eslint_d, -- deprecated use eslint-language-server from none-ls-extras
@@ -35,16 +38,20 @@ return {
 					}),
 					-- diagnostics.codespell,
 					cspell.diagnostics.with({
-						filetypes = {
-							"javascript",
-							"python",
-							"typescript",
-							"javascriptreact",
-							"typescriptreact",
-							"html",
+						disabled_filetypes = {
+							"markdown",
+							"md",
+							"markdown.mdx",
+							"txt",
+							"text",
+							"lua",
+							"json",
+							"sh",
+							"bash",
+							"gitconfig",
 						},
 					}),
-					-- diagnostics.commitlint,
+					diagnostics.commitlint,
 					-- diagnostics.editorconfig_checker,
 					-- diagnostics.hadolint,
 					-- diagnostics.misspell,
@@ -52,12 +59,11 @@ return {
 						method = none_ls.methods.DIAGNOSTICS_ON_SAVE,
 					}), ]]
 					diagnostics.write_good,
-					-- formatting.autopep8, -- deprecated, use ruff
-					-- formatting.isort,
-					-- formatting.black,
+					-- formatting.autopep8, -- deprecated, use ruff lsp
+					formatting.isort,
+					formatting.black,
 					-- formatting.fixjson, -- deprecated, use jsonls
-					-- formatting.prettierd,
-					-- formatting.ruff, -- deprecated, use ruff
+					-- formatting.ruff, -- deprecated, use ruff lsp
 					formatting.stylua,
 					formatting.yamlfmt,
 					--[[ formatting.biome.with({
@@ -71,27 +77,6 @@ return {
 						},
 					}), ]]
 				},
-				-- you can reuse a shared lspconfig on_attach callback here
-				on_attach = function(client, bufnr)
-					if client.supports_method("textDocument/formatting") then
-						vim.api.nvim_clear_autocmds({
-							group = augroup,
-							buffer = bufnr,
-						})
-						vim.api.nvim_create_autocmd("BufWritePre", {
-							group = augroup,
-							buffer = bufnr,
-							callback = function()
-								vim.lsp.buf.format({
-									bufnr = bufnr,
-									filter = function(_client)
-										return _client.name == "null-ls"
-									end,
-								})
-							end,
-						})
-					end
-				end,
 			})
 		end,
 	},

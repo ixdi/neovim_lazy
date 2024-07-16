@@ -30,34 +30,34 @@ return {
 				inc_rename = true,
 			},
 		},
-        -- stylua: ignore
-        keys = {
-            {
-                "<S-Enter>",
-                function()
-                    require("noice").redirect(vim.fn.getcmdline())
-                end,
-                mode = "c",
-                desc = "Redirect Cmdline"
-            }, {
-                "<leader>nl",
-                function() require("noice").cmd("last") end,
-                desc = "Noice Last Message"
-            }, {
-                "<leader>nh",
-                function() require("noice").cmd("history") end,
-                desc = "Noice History"
-            },
-            {
-                "<leader>na",
-                function() require("noice").cmd("all") end,
-                desc = "Noice All"
-            }, {
-                "<leader>nd",
-                function() require("noice").cmd("dismiss") end,
-                desc = "Dismiss All"
-            }
-        }
+    -- stylua: ignore
+    keys = {
+      {
+        "<S-Enter>",
+        function()
+          require("noice").redirect(vim.fn.getcmdline())
+        end,
+        mode = "c",
+        desc = "Redirect Cmdline"
+      }, {
+      "<leader>nl",
+      function() require("noice").cmd("last") end,
+      desc = "Noice Last Message"
+    }, {
+      "<leader>nh",
+      function() require("noice").cmd("history") end,
+      desc = "Noice History"
+    },
+      {
+        "<leader>na",
+        function() require("noice").cmd("all") end,
+        desc = "Noice All"
+      }, {
+      "<leader>nd",
+      function() require("noice").cmd("dismiss") end,
+      desc = "Dismiss All"
+    }
+    }
 ,
 	}, -- Better `vim.notify()`
 	{
@@ -155,7 +155,6 @@ return {
 			})
 		end,
 	}, -- noicer ui
-	{ "folke/which-key.nvim" },
 	-- Dashboard. This runs when neovim starts, and is what displays
 	-- the "LAZYVIM" banner.
 	{
