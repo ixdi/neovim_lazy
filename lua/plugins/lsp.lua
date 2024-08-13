@@ -417,12 +417,12 @@ return {
       })
 
       -- html
-      require("lspconfig")["html"].setup({
+      --[[ require("lspconfig")["html"].setup({
         on_attach = on_attach,
         capabilities = capabilities,
         settings = {},
         filetypes = { "html" },
-      })
+      }) ]]
 
       -- dockerls
       require("lspconfig")["dockerls"].setup({
@@ -441,6 +441,13 @@ return {
         on_attach = on_attach,
         capabilities = capabilities,
         filetypes = { "cucumber", "feature" },
+      })
+
+      -- emmber
+      require("lspconfig")["ember"].setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        filetypes = { "handlebars" },
       })
     end,
   },

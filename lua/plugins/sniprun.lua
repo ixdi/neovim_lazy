@@ -1,5 +1,6 @@
 return {
 	{
+		-- run lines/blocs of code (independently of the rest of the file), supporting multiples languages
 		"michaelb/sniprun",
 		branch = "master",
 		build = "sh install.sh",
