@@ -302,7 +302,7 @@ return {
       })
 
       -- tsserver
-      require("lspconfig")["tsserver"].setup({
+      require("lspconfig")["ts_ls"].setup({
         --[[ on_attach = function(client)
 					-- Attach and configure vim-illuminate
 					require("illuminate").on_attach(client)
