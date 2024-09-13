@@ -9,7 +9,7 @@ return {
 			local formatting = none_ls.builtins.formatting
 			local diagnostics = none_ls.builtins.diagnostics
 			local code_actions = none_ls.builtins.code_actions
-			local cspell = require("cspell")
+			-- local cspell = require("cspell")
 			none_ls.setup({
 				debug = false,
 				sources = {
@@ -17,7 +17,7 @@ return {
 					code_actions.gitsigns,
 					-- code_actions.refactoring,
 					-- code_actions.shellcheck,
-					cspell.code_actions.with({
+					--[[ cspell.code_actions.with({
 						disabled_filetypes = {
 							"markdown",
 							"md",
@@ -30,14 +30,14 @@ return {
 							"bash",
 							"gitconfig",
 						},
-					}),
+					}), ]]
 					-- diagnostics.eslint_d, -- deprecated use eslint-language-server from none-ls-extras
 					-- diagnostics.luacheck, -- use selene / available in gbprod/none-ls-luacheck.nvim
 					diagnostics.markdownlint.with({
 						enabled_filetypes = { "markdown", "md", "markdown.mdx" },
 					}),
 					-- diagnostics.codespell,
-					cspell.diagnostics.with({
+					--[[ cspell.diagnostics.with({
 						disabled_filetypes = {
 							"markdown",
 							"md",
@@ -50,7 +50,7 @@ return {
 							"bash",
 							"gitconfig",
 						},
-					}),
+					}), ]]
 					diagnostics.commitlint,
 					-- diagnostics.editorconfig_checker,
 					-- diagnostics.hadolint,
