@@ -1,7 +1,7 @@
 return {
-	-- buffer remove
-	{
-		"echasnovski/mini.bufremove",
+  -- buffer remove
+  {
+    "echasnovski/mini.bufremove",
     -- stylua: ignore
     keys = {
       {
@@ -22,5 +22,5 @@ return {
       desc = "Delete all buffers except the current"
     }
     },
-	},
+  },
 }

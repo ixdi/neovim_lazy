@@ -1,7 +1,7 @@
 -- luacheck: globals vim
 -- Autocompletion
+-- auto completion
 return {
-	-- auto completion
 	{
 		"hrsh7th/nvim-cmp",
 		version = false, -- last release is way too old

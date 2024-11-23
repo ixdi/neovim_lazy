@@ -1,3 +1,3 @@
 return {
-	{ "ixdi/vim-snippets", event = { "VimEnter" } },
+  { "ixdi/vim-snippets", event = { "VimEnter" } },
 }

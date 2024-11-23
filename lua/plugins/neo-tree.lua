@@ -57,6 +57,11 @@ return {
 				":Neotree document_symbols<cr>",
 				desc = "Explorer NeoTree (document_symbols)",
 			},
+			{
+				"<leader>eg",
+				":Neotree git_status<cr>",
+				desc = "Explorer NeoTree (git_status)",
+			},
 		},
 		deactivate = function()
 			vim.cmd([[Neotree close]])
@@ -74,8 +79,8 @@ return {
 			sources = {
 				"filesystem",
 				"buffers",
-				"git_status",
 				"document_symbols",
+				"git_status",
 			},
 			open_files_do_not_replace_types = {
 				"terminal",
@@ -111,8 +116,8 @@ return {
 					-- Status type
 					untracked = "",
 					ignored = "",
-					unstaged = "",
-					staged = "",
+					unstaged = "",
+					staged = "",
 					conflict = "",
 				},
 				indent = {
