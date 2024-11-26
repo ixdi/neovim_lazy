@@ -92,6 +92,7 @@ return {
         path_display = { "smart" },
         file_ignore_patterns = {
           ".git",
+          ".next",
           "node_modules",
           ".meteor",
           "public",

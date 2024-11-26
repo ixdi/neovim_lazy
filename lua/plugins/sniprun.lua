@@ -79,12 +79,12 @@ return {
     },
     keys = {
       {
-        "<leader>rr",
+        "<leader>run",
         "<Plug>SnipRun",
         desc = "Run code",
       },
       {
-        "rr",
+        "run",
         "<Plug>SnipRun",
         desc = "Run code",
         mode = "v",

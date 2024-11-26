@@ -182,6 +182,10 @@ return {
             vim.api.nvim_win_set_cursor(0, curpos)
           end,
         })
+        if client.server_capabilities.documentSymbolProvider then
+          local navic = require("nvim-navic")
+          navic.attach(client, bufnr)
+        end
       end
 
       -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
