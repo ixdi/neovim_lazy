@@ -306,85 +306,34 @@ return {
 			})
 
 			-- tsserver
-			--[[ require("lspconfig")["ts_ls"].setup({
-        on_attach = function(client)
+			require("lspconfig")["ts_ls"].setup({
+				--[[ on_attach = function(client)
 					-- Attach and configure vim-illuminate
 					require("illuminate").on_attach(client)
 					-- this is important, otherwise tsserver will format ts/js
 					-- files which we *really* don't want.
 					-- client.server_capabilities.documentFormattingProvider = false
-				end,
-        on_attach = on_attach,
-        capabilities = capabilities,
-        filetypes = {
-          "javascript",
-          "javascriptreact",
-          "javascript.jsx",
-          "typescript",
-          "typescriptreact",
-          "typescript.tsx",
-        },
-        settings = {
-          editor = { linkedEditing = true },
-          typescript = {
-						format = {
-							indentSize = vim.o.shiftwidth,
-							convertTabsToSpaces = vim.o.expandtab,
-							tabSize = vim.o.tabstop,
-						},
-					},
-					typescriptreact = {
-						format = {
-							indentSize = vim.o.shiftwidth,
-							convertTabsToSpaces = vim.o.expandtab,
-							tabSize = vim.o.tabstop,
-						},
-					},
-					javascript = {
-						format = {
-							indentSize = vim.o.shiftwidth,
-							convertTabsToSpaces = vim.o.expandtab,
-							tabSize = vim.o.tabstop,
-						},
-					},
-          handlebars = {},
-          completions = { completeFunctionCalls = true },
-        },
-      })]]
-
-			-- biome
-			--[[ require("lspconfig")["biome"].setup({
-        on_attach = on_attach,
-        capabilities = capabilities,
-        settings = {},
-        filetypes = {
-          "javascript",
-          "javascript.jsx",
-          "javascriptreact",
-          "json",
-          "jsonc",
-          "mjs",
-          "typescript",
-          "typescript.tsx",
-          "typescriptreact",
-        },
-      }) ]]
-
-			-- eslint
-			--[[ require("lspconfig")["eslint"].setup({
+				end, ]]
 				on_attach = on_attach,
 				capabilities = capabilities,
 				settings = {
-					-- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
-					workingDirectories = { mode = "auto" },
-					experimental = {
-						-- allows to use flat config format
-						useFlatConfig = true,
-					},
+					editor = { linkedEditing = true },
+					handlebars = {},
+					completions = { completeFunctionCalls = true },
 				},
+			})
+
+			-- biome
+			--[[ require("lspconfig")["biome"].setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+				settings = {},
 				filetypes = {
 					"javascript",
+					"javascript.jsx",
 					"javascriptreact",
+					"json",
+					"jsonc",
 					"mjs",
 					"typescript",
 					"typescript.tsx",
@@ -392,19 +341,54 @@ return {
 				},
 			}) ]]
 
+			-- eslint
+			require("lspconfig")["eslint"].setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+				settings = {
+					codeAction = {
+						disableRuleComment = {
+							enable = true,
+							location = "separateLine",
+						},
+						showDocumentation = {
+							enable = true,
+						},
+					},
+					codeActionOnSave = {
+						enable = false,
+						mode = "all",
+					},
+					format = true,
+					nodePath = "",
+					onIgnoredFiles = "off",
+					problems = {
+						shortenToSingleLine = false,
+					},
+					quiet = false,
+					rulesCustomizations = {},
+					run = "onType",
+					useESLintClass = false,
+					validate = "on",
+					-- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
+					workingDirectories = { mode = "auto" },
+					experimental = {
+						-- allows to use flat config format
+						useFlatConfig = true,
+					},
+				},
+			})
+
 			-- Tailwindcss
 			require("lspconfig")["tailwindcss"].setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
-				settings = {},
-				filetypes = { "typescriptreact" },
 			})
 
 			-- MArksman
 			require("lspconfig")["marksman"].setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
-				settings = {},
 				filetypes = { "markdown", "md" },
 			})
 
@@ -417,7 +401,6 @@ return {
 			require("lspconfig")["jsonls"].setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
-				settings = {},
 				filetypes = { "json", "jsonc" },
 			})
 
@@ -459,6 +442,12 @@ return {
 				on_attach = on_attach,
 				capabilities = capabilities,
 				filetypes = { "handlebars" },
+			})
+
+			---intelephense
+			require("lspconfig")["intelephense"].setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
 			})
 		end,
 	},

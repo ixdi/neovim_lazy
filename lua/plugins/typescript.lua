@@ -1,10 +1,10 @@
 return {
-	{
+  --[[ {
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 		opts = {},
-	},
-	{
+	}, ]]
+  --[[ {
 		"stevearc/conform.nvim",
 		opts = {
 			formatters_by_ft = {
@@ -22,14 +22,14 @@ return {
 				lsp_format = "fallback",
 			},
 		},
-	},
-	{
-		"dmmulroy/ts-error-translator.nvim",
-		config = function()
-			require("ts-error-translator").setup()
-		end,
-	},
-	--[[ {
+	}, ]]
+  {
+    "dmmulroy/ts-error-translator.nvim",
+    config = function()
+      require("ts-error-translator").setup()
+    end,
+  },
+  --[[ {
       "OlegGulevskyy/better-ts-errors.nvim",
       dependencies = { "MunifTanjim/nui.nvim" },
       opts = {

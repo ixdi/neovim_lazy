@@ -1,23 +1,23 @@
 return {
-  { "davidmh/cspell.nvim" },
-  { "nvimtools/none-ls-extras.nvim" },
-  {
-    "nvimtools/none-ls.nvim",
-    dependencies = { "nvimtools/none-ls-extras.nvim", "nvim-lua/plenary.nvim", "davidmh/cspell.nvim" },
-    config = function()
-      local none_ls = require("null-ls")
-      local formatting = none_ls.builtins.formatting
-      local diagnostics = none_ls.builtins.diagnostics
-      local code_actions = none_ls.builtins.code_actions
-      -- local cspell = require("cspell")
-      none_ls.setup({
-        debug = false,
-        sources = {
-          -- code_actions.eslint_d, -- deprecated use eslint-language-server from none-ls-extras
-          code_actions.gitsigns,
-          -- code_actions.refactoring,
-          -- code_actions.shellcheck,
-          --[[ cspell.code_actions.with({
+	{ "davidmh/cspell.nvim" },
+	{ "nvimtools/none-ls-extras.nvim" },
+	{
+		"nvimtools/none-ls.nvim",
+		dependencies = { "nvimtools/none-ls-extras.nvim", "nvim-lua/plenary.nvim", "davidmh/cspell.nvim" },
+		config = function()
+			local none_ls = require("null-ls")
+			local formatting = none_ls.builtins.formatting
+			local diagnostics = none_ls.builtins.diagnostics
+			local code_actions = none_ls.builtins.code_actions
+			-- local cspell = require("cspell")
+			none_ls.setup({
+				debug = false,
+				sources = {
+					-- code_actions.eslint_d, -- deprecated use eslint-language-server from none-ls-extras
+					code_actions.gitsigns,
+					-- code_actions.refactoring,
+					-- code_actions.shellcheck,
+					--[[ cspell.code_actions.with({
 						disabled_filetypes = {
 							"markdown",
 							"md",
@@ -31,13 +31,13 @@ return {
 							"gitconfig",
 						},
 					}), ]]
-          -- diagnostics.eslint_d, -- deprecated use eslint-language-server from none-ls-extras
-          -- diagnostics.luacheck, -- use selene / available in gbprod/none-ls-luacheck.nvim
-          diagnostics.markdownlint.with({
-            enabled_filetypes = { "markdown", "md", "markdown.mdx" },
-          }),
-          -- diagnostics.codespell,
-          --[[ cspell.diagnostics.with({
+					-- diagnostics.eslint_d, -- deprecated use eslint-language-server from none-ls-extras
+					-- diagnostics.luacheck, -- use selene / available in gbprod/none-ls-luacheck.nvim
+					diagnostics.markdownlint.with({
+						enabled_filetypes = { "markdown", "md", "markdown.mdx" },
+					}),
+					-- diagnostics.codespell,
+					--[[ cspell.diagnostics.with({
 						disabled_filetypes = {
 							"markdown",
 							"md",
@@ -51,22 +51,22 @@ return {
 							"gitconfig",
 						},
 					}), ]]
-          diagnostics.commitlint,
-          -- diagnostics.editorconfig_checker,
-          -- diagnostics.hadolint,
-          -- diagnostics.misspell,
-          --[[ diagnostics.semgrep.with({
+					diagnostics.commitlint,
+					-- diagnostics.editorconfig_checker,
+					-- diagnostics.hadolint,
+					-- diagnostics.misspell,
+					--[[ diagnostics.semgrep.with({
 						method = none_ls.methods.DIAGNOSTICS_ON_SAVE,
 					}), ]]
-          diagnostics.write_good,
-          -- formatting.autopep8, -- deprecated, use ruff lsp
-          formatting.isort,
-          formatting.black,
-          -- formatting.fixjson, -- deprecated, use jsonls
-          -- formatting.ruff, -- deprecated, use ruff lsp
-          formatting.stylua,
-          formatting.yamlfmt,
-          --[[ formatting.biome.with({
+					-- diagnostics.write_good,
+					-- formatting.autopep8, -- deprecated, use ruff lsp
+					formatting.isort,
+					formatting.black,
+					-- formatting.fixjson, -- deprecated, use jsonls
+					-- formatting.ruff, -- deprecated, use ruff lsp
+					formatting.stylua,
+					formatting.yamlfmt,
+					--[[ formatting.biome.with({
 						args = {
 							"check",
 							"--apply-unsafe",
@@ -76,10 +76,10 @@ return {
 							"$FILENAME",
 						},
 					}), ]]
-        },
-      })
-    end,
-  },
+				},
+			})
+		end,
+	},
 }
 
 --[[
