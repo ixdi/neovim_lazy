@@ -10,7 +10,9 @@ map("n", ",qq", "<cmd>q<cr>", "Quit")
 map("n", ",qa", "<cmd>qa!<cr>", "Quit all")
 
 -- Diagnostic keymaps
-map("n", ",e", vim.diagnostic.open_float, "Show diagnostics under cursor")
+map("n", "<leader>e", vim.diagnostic.open_float, "Show diagnostics under cursor")
+map("n", "<leader>en", vim.diagnostic.goto_next)
+map("n", "<leader>ep", vim.diagnostic.goto_prev)
 
 -- Better window navigation
 map("n", "<C-h>", "<C-w><C-h>", "Navigate windows to the left")
