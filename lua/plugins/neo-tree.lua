@@ -1,79 +1,31 @@
--- Nicer filetree than NeoTreeWinSeparator
--- If you want icons for diagnostic errors, you'll need to define them somewhere:
-local icons = require("config").icons
-
-vim.fn.sign_define("DiagnosticSignError", {
-	text = icons.diagnostics.Error,
-	texthl = "DiagnosticSignError",
-})
-vim.fn.sign_define("DiagnosticSignWarn", {
-	text = icons.diagnostics.Warn,
-	texthl = "DiagnosticSignWarn",
-})
-vim.fn.sign_define("DiagnosticSignInfo", {
-	text = icons.diagnostics.Info,
-	texthl = "DiagnosticSignInfo",
-})
-vim.fn.sign_define("DiagnosticSignHint", {
-	text = icons.diagnostics.Hint,
-	texthl = "DiagnosticSignHint",
-})
-
 return {
 	-- file explorer
 	{
 		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v3.x",
+		version = "*",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 			"MunifTanjim/nui.nvim",
 		},
-		cmd = "Neotree",
+		lazy = false,
 		keys = {
-			{
-				"<leader>e",
-				function()
-					require("neo-tree.command").execute({
-						toggle = true,
-						reveal = true,
-					})
-				end,
-				desc = "Explorer NeoTree (root dir)",
-			},
-			{
-				"<leader>eb",
-				function()
-					require("neo-tree.command").execute({
-						source = "buffers",
-						toggle = true,
-						reveal = true,
-					})
-				end,
-				desc = "Explorer NeoTree (buffers)",
-			},
-			{
-				"<leader>es",
-				":Neotree document_symbols<cr>",
-				desc = "Explorer NeoTree (document_symbols)",
-			},
-			{
-				"<leader>eg",
-				":Neotree git_status<cr>",
-				desc = "Explorer NeoTree (git_status)",
-			},
+			{ "ee", ":Neotree toggle reveal<CR>", desc = "NeoTree toggle reveal", silent = true },
+			{ "eb", ":Neotree buffers<CR>", desc = "NeoTree buffers", silent = true },
+			{ "es", ":Neotree document_symbols<CR>", desc = "NeoTree document_symbols", silent = true },
+			{ "eg", ":Neotree git_status<CR>", desc = "NeoTree git_status", silent = true },
 		},
-		deactivate = function()
-			vim.cmd([[Neotree close]])
-		end,
-		init = function()
-			if vim.fn.argc() == 1 then
-				local stat = vim.loop.fs_stat(vim.fn.argv(0))
-				if stat and stat.type == "directory" then
-					require("neo-tree")
-				end
-			end
-		end,
+		--		deactivate = function()
+		--			vim.cmd([[Neotree close]])
+		--		end,
+		--		init = function()
+		--			if vim.fn.argc() == 1 then
+		--				local stat = vim.loop.fs_stat(vim.fn.argv(0))
+		--				if stat and stat.type == "directory" then
+		--					require("neo-tree")
+		--				end
+		--			end
+		--		end,
 		opts = {
 			source_selector = { winbar = true, statusline = false },
 			sources = {
@@ -107,19 +59,6 @@ return {
 				},
 			},
 			default_component_configs = {
-				symbols = {
-					-- Change type
-					added = icons.git.added,
-					deleted = icons.git.removed,
-					modified = icons.git.modified,
-					renamed = "󰁕",
-					-- Status type
-					untracked = "",
-					ignored = "",
-					unstaged = "",
-					staged = "",
-					conflict = "",
-				},
 				indent = {
 					with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
 					expander_collapsed = "",
