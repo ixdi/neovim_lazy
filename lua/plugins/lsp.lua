@@ -229,7 +229,7 @@ return {
 				-- But for many setups, the LSP (`ts_ls`) will work just fine
 				rust_analyzer = {},
 				ts_ls = {},
-				ruff = {},
+				pylsp = {},
 				jsonls = {},
 				yamlls = {},
 				dockerls = {},
@@ -296,7 +296,6 @@ return {
 				"pydocstyle",
 				"pyflakes",
 				"pylsp",
-				"ruff",
 				"rust_analyzer",
 				"semgrep",
 				"shellcheck",
