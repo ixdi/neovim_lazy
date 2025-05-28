@@ -54,7 +54,7 @@ return {
 	-- in your project and loads them into a browsable list.
 	{
 		"folke/todo-comments.nvim",
-		cmd = { "TodoTrouble", "TodoTelescope" },
+		cmd = { "TodoTelescope" },
 		event = { "BufReadPost", "BufNewFile" },
 		config = true,
     -- stylua: ignore
@@ -63,20 +63,9 @@ return {
         "<leader>tcn",
         function() require("todo-comments").jump_next() end,
         desc = "Next todo comment"
-      }, {
-      "<leader>tcp",
-      function() require("todo-comments").jump_prev() end,
-      desc = "Previous todo comment"
-    }, { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
-      {
-        "<leader>xT",
-        "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>",
-        desc = "Todo/Fix/Fixme (Trouble)"
-      }, { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" }, {
-      "<leader>sT",
-      "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>",
-      desc = "Todo/Fix/Fixme"
-    }
+      }, 
+      { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
+      { "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme" }
     },
 	},
 }
