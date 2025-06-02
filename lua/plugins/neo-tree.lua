@@ -1,6 +1,6 @@
 return {
-	-- file explorer
 	{
+		-- file explorer
 		"nvim-neo-tree/neo-tree.nvim",
 		version = "*",
 		dependencies = {

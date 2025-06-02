@@ -1,5 +1,6 @@
 return {
 	{
+		-- Add surround characters around text objects
 		"echasnovski/mini.surround",
 		version = "*",
 		config = function()

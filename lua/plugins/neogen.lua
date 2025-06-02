@@ -1,5 +1,6 @@
 return {
 	{
+		-- Comment code like jsDoc
 		"danymat/neogen",
 		dependencies = "nvim-treesitter/nvim-treesitter",
 		config = true,

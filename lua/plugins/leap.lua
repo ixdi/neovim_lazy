@@ -1,5 +1,6 @@
 return {
 	{
+		-- Find and position quickly in the current buffer
 		"ggandor/leap.nvim",
 		config = function()
 			vim.keymap.set({ "n", "x", "o" }, "f", "<Plug>(leap)")

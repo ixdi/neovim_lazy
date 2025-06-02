@@ -1,5 +1,6 @@
 return {
 	{
+		-- Modern terminal management plugin for Neovim
 		"akinsho/toggleterm.nvim",
 		version = "*",
 		config = true,

@@ -1,5 +1,6 @@
 return {
 	{
+		-- A lightweight plugin for commenting code in Neovim
 		"numToStr/Comment.nvim",
 		opts = {
 			-- add any options here

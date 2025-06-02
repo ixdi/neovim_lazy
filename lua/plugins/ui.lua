@@ -30,36 +30,45 @@ return {
 				inc_rename = true,
 			},
 		},
-    -- stylua: ignore
-    keys = {
-      {
-        "<S-Enter>",
-        function()
-          require("noice").redirect(vim.fn.getcmdline())
-        end,
-        mode = "c",
-        desc = "Redirect Cmdline"
-      }, {
-      "<leader>nl",
-      function() require("noice").cmd("last") end,
-      desc = "Noice Last Message"
-    }, {
-      "<leader>nh",
-      function() require("noice").cmd("history") end,
-      desc = "Noice History"
-    },
-      {
-        "<leader>na",
-        function() require("noice").cmd("all") end,
-        desc = "Noice All"
-      }, {
-      "<leader>nd",
-      function() require("noice").cmd("dismiss") end,
-      desc = "Dismiss All"
-    }
-    }
-,
-	}, -- Better `vim.notify()`
+		keys = {
+			{
+				"<S-Enter>",
+				function()
+					require("noice").redirect(vim.fn.getcmdline())
+				end,
+				mode = "c",
+				desc = "Redirect Cmdline",
+			},
+			{
+				"<leader>nl",
+				function()
+					require("noice").cmd("last")
+				end,
+				desc = "Noice Last Message",
+			},
+			{
+				"<leader>nh",
+				function()
+					require("noice").cmd("history")
+				end,
+				desc = "Noice History",
+			},
+			{
+				"<leader>na",
+				function()
+					require("noice").cmd("all")
+				end,
+				desc = "Noice All",
+			},
+			{
+				"<leader>nd",
+				function()
+					require("noice").cmd("dismiss")
+				end,
+				desc = "Dismiss All",
+			},
+		},
+	},
 	{
 		"rcarriga/nvim-notify",
 		keys = {
@@ -80,25 +89,13 @@ return {
 				return math.floor(vim.o.columns * 0.75)
 			end,
 		},
-	}, -- better vim.ui
+	},
 	{
 		"stevearc/dressing.nvim",
 		opts = {},
-		-- lazy = true,
-		--[[ init = function()
-			---@diagnostic disable-next-line: duplicate-set-field
-			vim.ui.select = function(...)
-				require("lazy").load({ plugins = { "dressing.nvim" } })
-				return vim.ui.select(...)
-			end
-			---@diagnostic disable-next-line: duplicate-set-field
-			vim.ui.input = function(...)
-				require("lazy").load({ plugins = { "dressing.nvim" } })
-				return vim.ui.input(...)
-			end
-		end, ]]
-	}, -- indent guides for Neovim
+	},
 	{
+		-- indent guides for Neovim
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
 		event = { "BufReadPost", "BufNewFile" },
@@ -123,10 +120,11 @@ return {
 			}
 			require("ibl").setup(opts)
 		end,
-	}, -- Active indent guide and indent text objects. When you're browsing
-	-- code, this highlights the current level of indentation, and animates
-	-- the highlighting.
+	},
 	{
+		-- Active indent guide and indent text objects. When you're browsing
+		-- code, this highlights the current level of indentation, and animates
+		-- the highlighting.
 		"echasnovski/mini.indentscope",
 		version = false, -- wait till new 0.7.0 release to put it back on semver
 		event = { "BufReadPre", "BufNewFile" },
@@ -153,10 +151,10 @@ return {
 				end,
 			})
 		end,
-	}, -- noicer ui
-	-- Dashboard. This runs when neovim starts, and is what displays
-	-- the "LAZYVIM" banner.
+	},
 	{
+		-- Dashboard. This runs when neovim starts, and is what displays
+		-- the "LAZYVIM" banner.
 		"goolord/alpha-nvim",
 		event = "VimEnter",
 		opts = function()
@@ -205,10 +203,11 @@ return {
 				end,
 			})
 		end,
-	}, -- lsp symbol navigation for lualine. This shows where
-	-- in the code structure you are - within functions, classes,
-	-- etc - in the statusline.
+	},
 	{
+		-- lsp symbol navigation for lualine. This shows where
+		-- in the code structure you are - within functions, classes,
+		-- etc - in the statusline.
 		"SmiteshP/nvim-navic",
 		lazy = true,
 		opts = function()

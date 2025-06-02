@@ -1,5 +1,6 @@
 return {
 	{
+		-- Show tailwindcss colors in cmp
 		"roobert/tailwindcss-colorizer-cmp.nvim",
 		-- optionally, override the default options:
 		config = function()

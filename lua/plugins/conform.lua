@@ -1,5 +1,6 @@
 return {
 	{
+		-- Formatting framework for Neovim
 		"stevearc/conform.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()

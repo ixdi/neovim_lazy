@@ -1,5 +1,6 @@
 return {
 	{
+		-- Auto-completion plugin for Neovim, powered by Rust
 		"saghen/blink.cmp",
 		-- optional: provides snippets for the snippet source
 		dependencies = {

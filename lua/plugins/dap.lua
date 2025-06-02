@@ -1,5 +1,6 @@
 return {
 	{
+		-- Debug Adapter Protocol (DAP) for Neovim
 		"mfussenegger/nvim-dap",
 		dependencies = {
 			"nvim-neotest/nvim-nio",
