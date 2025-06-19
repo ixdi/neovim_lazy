@@ -14,6 +14,7 @@ return {
 			{ "eb", ":Neotree buffers<CR>", desc = "NeoTree buffers", silent = true },
 			{ "es", ":Neotree document_symbols<CR>", desc = "NeoTree document_symbols", silent = true },
 			{ "eg", ":Neotree git_status<CR>", desc = "NeoTree git_status", silent = true },
+			{ ",f", ":Neotree reveal<CR>", desc = "NeoTree reveal", silent = true },
 		},
 		--		deactivate = function()
 		--			vim.cmd([[Neotree close]])
