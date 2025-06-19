@@ -305,7 +305,6 @@ return {
 				"tailwindcss",
 				"terraformls",
 				"ts_ls",
-				"vale_ls",
 				"write-good",
 				"yamlls",
 				"yapf",
