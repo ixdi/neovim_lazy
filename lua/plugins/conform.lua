@@ -14,11 +14,11 @@ return {
 					html = { "prettierd" },
 					css = { "prettierd" },
 					scss = { "prettierd" },
-					markdown = { "prettierd" },
+					-- markdown = { "prettierd" },
 					yaml = { "prettierd" },
 					lua = { "stylua" },
 					graphql = { "prettierd" },
-					python = { "isort", "black" },
+					python = { "black" },
 				},
 				format_on_save = {
 					lsp_format = "fallback",

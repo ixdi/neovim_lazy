@@ -18,10 +18,5 @@ and be up and running! (This assumes you have cloned this repository to your hom
 
 lazy.nvim will handle the bootstrapping process on first launch. If you run into any issues, try closing Neovim and restarting it again after lazy.nvim has performed the intial bootstrap.
 
-## Other projects
+## Plugins
 
-If you're looking for other options in the "Neovim config bootstrap market", here are a cool options to consider
-
-- [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
-- [Neovim from scratch](https://github.com/LunarVim/Neovim-from-scratch), by ChrisAtMachine (hosted under the LunarNvim organization in GitHub)
-- [LazyVim](https://github.com/LazyVim/LazyVim)
