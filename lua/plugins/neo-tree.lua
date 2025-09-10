@@ -20,6 +20,7 @@ return {
 				-- custom mappings
 				vim.keymap.set("n", "v", api.node.open.vertical, opts("Vertical Split"))
 				vim.keymap.set("n", "i", api.node.open.horizontal, opts("Horizontal Split"))
+				vim.keymap.set("n", "<space>", api.node.open.edit, opts("Open"))
 			end
 
 			require("nvim-tree").setup({
