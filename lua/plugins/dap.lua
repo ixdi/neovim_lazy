@@ -5,20 +5,29 @@ return {
 		dependencies = {
 			"nvim-neotest/nvim-nio",
 			"rcarriga/nvim-dap-ui",
-			"mfussenegger/nvim-dap-python",
+			"mason-org/mason.nvim",
+			"jay-babu/mason-nvim-dap.nvim",
 			"theHamsta/nvim-dap-virtual-text",
 		},
 		config = function()
 			local dap = require("dap")
 			local dapui = require("dapui")
-			local dap_python = require("dap-python")
+			local mason_dap = require("mason-nvim-dap")
 
 			require("dapui").setup({})
 			require("nvim-dap-virtual-text").setup({
 				commented = true, -- Show virtual text alongside comment
 			})
 
-			dap_python.setup("python3")
+			mason_dap.setup({
+				ensure_installed = { "cppdbg", "python" },
+				automatic_installation = true,
+				handlers = {
+					function(config)
+						require("mason-nvim-dap").default_setup(config)
+					end,
+				},
+			})
 
 			vim.fn.sign_define("DapBreakpoint", {
 				text = "",
@@ -45,6 +54,34 @@ return {
 			dap.listeners.after.event_initialized["dapui_config"] = function()
 				dapui.open()
 			end
+
+			dap.configurations = {
+				python = {
+					{
+						-- The first three options are required by nvim-dap
+						type = "python", -- the type here established the link to the adapter definition: `dap.adapters.python`
+						request = "launch",
+						name = "Launch file",
+
+						-- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
+
+						program = "${file}", -- This configuration will launch the current file if used.
+						pythonPath = function()
+							-- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
+							-- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
+							-- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
+							local cwd = vim.fn.getcwd()
+							if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
+								return cwd .. "/venv/bin/python"
+							elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
+								return cwd .. "/.venv/bin/python"
+							else
+								return "/usr/bin/python"
+							end
+						end,
+					},
+				},
+			}
 
 			-- Toggle breakpoint
 			vim.keymap.set("n", "<leader>db", function()
