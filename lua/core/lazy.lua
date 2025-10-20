@@ -6,8 +6,8 @@ if not vim.loop.fs_stat(lazypath) then
 		"git",
 		"clone",
 		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
 		"--branch=stable", -- latest stable release
+		"https://github.com/folke/lazy.nvim.git",
 		lazypath,
 	})
 end
@@ -29,7 +29,15 @@ require("helpers.keys").set_leader(" ")
 
 -- Load plugins from specifications
 -- (The leader key must be set before this)
-lazy.setup("plugins")
+-- Setup lazy.nvim
+require("lazy").setup({
+	spec = {
+		-- import your plugins
+		{ import = "plugins" },
+	},
+	-- automatically check for plugin updates
+	checker = { enabled = true },
+})
 
 -- Might as well set up an easy-access keybinding
 require("helpers.keys").map("n", "<leader>L", lazy.show, "Show Lazy")

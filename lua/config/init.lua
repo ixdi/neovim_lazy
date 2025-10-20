@@ -5,7 +5,7 @@ vim.g.loaded_netrwPlugin = 1
 
 local M = {}
 
-M.lazy_version = ">=9.1.0"
+M.lazy_version = ">=11.0"
 
 -- icons used by other plugins
 M.icons = {

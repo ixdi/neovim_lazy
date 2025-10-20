@@ -1,21 +1,22 @@
 vim.g.clipboard = {
-	name = "xsel_override",
+	-- name = "xsel_override",
+	-- copy = {
+	-- 	["+"] = "xsel --input --clipboard",
+	-- 	["*"] = "xsel --input --primary",
+	-- },
+	-- paste = {
+	-- 	["+"] = "xsel --output --clipboard",
+	-- 	["*"] = "xsel --output --primary",
+	-- },
+	name = "wl-clipboard (wsl)",
 	copy = {
-		["+"] = "xsel --input --clipboard",
-		["*"] = "xsel --input --primary",
-	},
-	paste = {
-		["+"] = "xsel --output --clipboard",
-		["*"] = "xsel --output --primary",
-	},
-	--[[ copy = {
-		["+"] = "wl-copy",
-		["*"] = "wl-copy",
+		["+"] = "wl-copy --foreground --type text/plain",
+		["*"] = "wl-copy --foreground --primary --type text/plain",
 	},
 	paste = {
 		["+"] = "wl-paste",
-		["*"] = "wl-paste",
-	}, ]]
+		["*"] = "wl-paste --primary",
+	},
 	cache_enabled = 1,
 }
 
