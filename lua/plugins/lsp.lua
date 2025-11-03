@@ -386,7 +386,6 @@ return {
 				"intelephense",
 				"isort",
 				"jinja_lsp",
-				"jsonls",
 				"lua_ls",
 				"markdown_oxide",
 				"marksman",

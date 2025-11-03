@@ -6,11 +6,11 @@ return {
 		config = function()
 			require("conform").setup({
 				formatters_by_ft = {
-					javascript = { "prettierd" },
-					typescript = { "prettierd" },
-					javascriptreact = { "prettierd" },
-					typescriptreact = { "prettierd" },
-					json = { "prettierd" },
+					javascript = { "biome" },
+					typescript = { "biome" },
+					javascriptreact = { "biome" },
+					typescriptreact = { "biome" },
+					json = { "biome" },
 					html = { "prettierd" },
 					css = { "prettierd" },
 					scss = { "prettierd" },
