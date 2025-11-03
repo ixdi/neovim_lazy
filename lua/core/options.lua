@@ -73,9 +73,9 @@ vim.api.nvim_create_autocmd("BufReadCmd", {
 -- Set html as Handlebars for .html files
 vim.api.nvim_create_autocmd("BufRead", {
 	pattern = "*.html",
-	command = "set filetype=handlebars",
+	command = "set filetype=html.handlebars",
 })
 vim.api.nvim_create_autocmd("BufNew", {
 	pattern = "*.html",
-	command = "set filetype=handlebars",
+	command = "set filetype=html.handlebars",
 })
