@@ -20,80 +20,64 @@ vim.g.clipboard = {
 	cache_enabled = 1,
 }
 
+-- Yanky.nvim keymaps
+vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfterCharwise)", { desc = "Yanky: Put After Charwise" })
+vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBeforeCharwise)", { desc = "Yanky: Put Before Charwise" })
+
+vim.keymap.set("n", "<m-p>", "<Plug>(YankyPreviousEntry)", { desc = "Yanky: Previous Yank Entry" })
+vim.keymap.set("n", "<m-n>", "<Plug>(YankyNextEntry)", { desc = "Yanky: Next Yank Entry" })
+
+-- New line put and reindent
+vim.keymap.set("n", "=p", "<Plug>(YankyPutAfterFilter)", { desc = "Yanky: Put After with Reindent" })
+vim.keymap.set("n", "=P", "<Plug>(YankyPutBeforeFilter)", { desc = "Yanky: Put Before with Reindent" })
+
+-- Clear yank history
+vim.keymap.set("n", "<leader>yc", ":YankyClearHistory <cr>", { desc = "Clear Yank History" })
+
+-- Yanky.nvim Telescope extension keymap
+vim.keymap.set("n", "<leader>p", function()
+	require("telescope").extensions.yank_history.yank_history()
+end, { desc = "Open Yank History" })
+
+-- Preserve cursor position while yanking
+vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)")
+
 return {
 	{
 		-- Yanky.nvim: A Neovim plugin for managing yank history
 		"gbprod/yanky.nvim",
-		opts = function()
-			local mapping = require("yanky.telescope.mapping")
-			local mappings = mapping.get_defaults()
-			mappings.i["<c-p>"] = nil
-			return {
-				highlight = { on_put = true, on_yank = true, timer = 500 },
-				ring = {
-					history_length = 300,
-					storage = "shada",
-					sync_with_numbered_registers = true,
-					cancel_event = "update",
-					ignore_registers = { "_" },
-					update_register_on_cycle = false,
+		opts = {
+			ring = {
+				history_length = 100,
+				storage = "shada",
+				sync_with_numbered_registers = true,
+				cancel_event = "update",
+				ignore_registers = { "_" },
+				update_register_on_cycle = false,
+				permanent_wrapper = nil,
+			},
+			picker = {
+				select = {
+					action = nil, -- nil to use default put action
 				},
-				picker = {
-					telescope = {
-						use_default_mappings = false,
-						mappings = mappings,
-					},
+				telescope = {
+					mappings = nil, -- nil to use default mappings or no mappings (see `use_default_mappings`)
 				},
-				preserve_cursor_position = { enabled = true },
-				system_clipboard = {
-					sync_with_ring = true,
-					clipboard_register = "unnamedplus",
-				},
-				textobj = {
-					enabled = true,
-				},
-			}
-		end,
-		keys = {
-			{
-				"<leader>p",
-				function()
-					require("telescope").extensions.yank_history.yank_history({})
-				end,
-				desc = "Open Yank History",
 			},
-			{ "y", "<Plug>(YankyYank)", mode = { "n", "x" }, desc = "Yank text" },
-			{
-				"p",
-				"<Plug>(YankyPutAfter)",
-				mode = { "n", "x" },
-				desc = "Put yanked text after cursor",
+			system_clipboard = {
+				sync_with_ring = true,
+				clipboard_register = nil,
 			},
-			{
-				"P",
-				"<Plug>(YankyPutBefore)",
-				mode = { "n", "x" },
-				desc = "Put yanked text before cursor",
+			highlight = {
+				on_put = true,
+				on_yank = true,
+				timer = 500,
 			},
-			{
-				"<C-y>",
-				"<Plug>(YankyCycleForward)",
-				desc = "Cycle forward through yank history",
+			preserve_cursor_position = {
+				enabled = true,
 			},
-			{
-				"<C-S-Y>",
-				"<Plug>(YankyCycleBackward)",
-				desc = "Cycle backward through yank history",
-			},
-			{
-				"<C-p>",
-				"<Plug>(YankyPutIndentAfterLinewise)",
-				desc = "Put indented after cursor (linewise)",
-			},
-			{
-				"<C-S-P>",
-				"<Plug>(YankyPutIndentBeforeLinewise)",
-				desc = "Put indented before cursor (linewise)",
+			textobj = {
+				enabled = false,
 			},
 		},
 	},

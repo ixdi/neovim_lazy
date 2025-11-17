@@ -275,11 +275,12 @@ This configuration uses the following key bindings organized by functionality:
 
 ### Clipboard & History
 - `<leader>p` - Open yank history
+- `<leader>yc` - Clear yank history
 - `y` - Yank text
 - `p` - Put yanked text after cursor
 - `P` - Put yanked text before cursor
-- `<C-y>` - Cycle forward through yank history
-- `<C-S-Y>` - Cycle backward through yank history
-- `<C-p>` - Put indented after cursor (linewise)
-- `<C-S-P>` - Put indented before cursor (linewise)
+- `=p` - Put reindented after line
+- `=P` - Put reindented before line
+- `<M-p>` - Cycle forward through yank history
+- `<M-n>` - Cycle backward through yank history
 
