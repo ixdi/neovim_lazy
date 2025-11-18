@@ -11,8 +11,18 @@ map("n", ",qa", "<cmd>qa!<cr>", "Quit all")
 
 -- Diagnostic keymaps
 map("n", "<leader>e", vim.diagnostic.open_float, "Show diagnostics under cursor")
-map("n", "<leader>en", ":lua vim.diagnostic.jump({ count = 1 })<cr>", "Go to next diagnostic")
-map("n", "<leader>ep", ":lua vim.diagnostic.jump({ count = -1 })<cr>", "Go to previous diagnostic")
+map(
+	"n",
+	"<leader>en",
+	":lua vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.WARN })<cr>",
+	"Go to next diagnostic"
+)
+map(
+	"n",
+	"<leader>ep",
+	":lua vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.ERROR })<cr>",
+	"Go to previous diagnostic"
+)
 
 -- Navigate buffers
 map("n", "<S-l>", ":bnext<CR>", "Next buffer")
