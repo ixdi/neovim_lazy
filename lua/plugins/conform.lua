@@ -10,7 +10,7 @@ return {
 					typescript = { "biome" },
 					javascriptreact = { "biome" },
 					typescriptreact = { "biome" },
-					json = { "biome" },
+					json = { "jsonls" },
 					html = { "prettierd" },
 					css = { "prettierd" },
 					scss = { "prettierd" },
