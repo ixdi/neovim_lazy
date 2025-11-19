@@ -28,7 +28,7 @@ vim.keymap.set("n", "<m-p>", "<Plug>(YankyPreviousEntry)", { desc = "Yanky: Prev
 vim.keymap.set("n", "<m-n>", "<Plug>(YankyNextEntry)", { desc = "Yanky: Next Yank Entry" })
 
 -- New line put and reindent
-vim.keymap.set("n", "=p", "<Plug>(YankyPutAfterFilter)", { desc = "Yanky: Put After with Reindent" })
+vim.keymap.set("n", "<c-p>", "<Plug>(YankyPutAfterFilter)", { desc = "Yanky: Put After with Reindent" })
 vim.keymap.set("n", "=P", "<Plug>(YankyPutBeforeFilter)", { desc = "Yanky: Put Before with Reindent" })
 
 -- Clear yank history
