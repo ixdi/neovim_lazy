@@ -167,6 +167,24 @@ return {
 			}
 		end,
 	}, -- icons
-	{ "nvim-tree/nvim-web-devicons", lazy = true }, -- ui components
+	{
+		"nvim-tree/nvim-web-devicons",
+		lazy = true,
+		opts = {
+			override = {},
+			default = true,
+			color_icons = true,
+		},
+	}, -- ui components
+	{
+		"rachartier/tiny-devicons-auto-colors.nvim",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+		event = "VeryLazy",
+		config = function()
+			require("tiny-devicons-auto-colors").setup()
+		end,
+	},
 	{ "MunifTanjim/nui.nvim", lazy = true },
 }

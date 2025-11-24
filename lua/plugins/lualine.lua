@@ -10,7 +10,7 @@ return {
 
 			return {
 				options = {
-					theme = "auto",
+					theme = "nordic",
 					globalstatus = true,
 					icons_enabled = true,
 					disabled_filetypes = { statusline = { "dashboard", "alpha" } },

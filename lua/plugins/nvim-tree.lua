@@ -23,6 +23,8 @@ return {
 				vim.keymap.set("n", "<space>", api.node.open.edit, opts("Open"))
 			end
 
+			local icons = require("config").icons
+
 			require("nvim-tree").setup({
 				view = { adaptive_size = true },
 				update_focused_file = {
@@ -42,6 +44,58 @@ return {
 						"Diagnostics",
 						"Copied",
 						"Cut",
+					},
+					full_name = true,
+					group_empty = true,
+					special_files = {},
+					symlink_destination = false,
+					indent_markers = {
+						enable = true,
+					},
+					icons = {
+						git_placement = "signcolumn",
+						diagnostics_placement = "right_align",
+						web_devicons = {
+							file = {
+								enable = true,
+								color = true,
+							},
+							folder = {
+								enable = true,
+								color = true,
+							},
+						},
+						show = {
+							file = true,
+							folder = false,
+							folder_arrow = false,
+							git = true,
+							diagnostics = true,
+						},
+						glyphs = {
+							git = {
+								unstaged = icons.git.Unstaged,
+								staged = icons.git.Staged,
+								unmerged = icons.git.Unmerged,
+								renamed = icons.git.Renamed,
+								untracked = icons.git.Untracked,
+								deleted = icons.git.Deleted,
+								ignored = icons.git.Ignored,
+							},
+						},
+					},
+				},
+				git = {
+					enable = true,
+				},
+				diagnostics = {
+					enable = true,
+					show_on_dirs = true,
+					icons = {
+						hint = icons.diagnostics.Hint,
+						info = icons.diagnostics.Info,
+						warning = icons.diagnostics.Warning,
+						error = icons.diagnostics.Error,
 					},
 				},
 			})

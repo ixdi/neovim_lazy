@@ -20,7 +20,17 @@ M.icons = {
 		LogPoint = ".>",
 	},
 	diagnostics = { Error = " ", Warn = " ", Hint = "󰌵", Info = " " },
-	git = { added = " ", modified = " ", removed = " " },
+	git = {
+		added = " ",
+		modified = " ",
+		removed = " ",
+		Staged = "✓ ",
+		Unstaged = " ",
+		Unmerged = " ",
+		Renamed = "➜ ",
+		Untracked = "★ ",
+		Ignored = "◌ ",
+	},
 	kinds = {
 		Array = " ",
 		Boolean = " ",
