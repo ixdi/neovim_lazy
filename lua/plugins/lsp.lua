@@ -403,6 +403,7 @@ return {
 				"stylua",
 				"tailwindcss",
 				"terraformls",
+				"tinymist",
 				"ts_ls",
 				"write-good",
 				"yamlls",
