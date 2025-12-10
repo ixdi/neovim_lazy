@@ -377,6 +377,7 @@ return {
 				"commitlint",
 				"cspell",
 				"cucumber_language_server",
+				"cssls",
 				"docker_compose_language_service",
 				"dockerls",
 				"editorconfig-checker",
