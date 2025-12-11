@@ -21,6 +21,7 @@ return {
 				vim.keymap.set("n", "v", api.node.open.vertical, opts("Vertical Split"))
 				vim.keymap.set("n", "i", api.node.open.horizontal, opts("Horizontal Split"))
 				vim.keymap.set("n", "<space>", api.node.open.edit, opts("Open"))
+				vim.keymap.set("n", "r", api.tree.reload, opts("Reload"))
 			end
 
 			local icons = require("config").icons
@@ -31,6 +32,7 @@ return {
 					enable = true,
 				},
 				on_attach = key_shortcuts,
+				auto_reload_on_write = true,
 				filters = {
 					dotfiles = false,
 				},
