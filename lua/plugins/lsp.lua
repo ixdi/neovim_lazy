@@ -405,7 +405,6 @@ return {
 				"tailwindcss",
 				"terraformls",
 				"tinymist",
-				"ts_ls",
 				"write-good",
 				"yamlls",
 				"yapf",
