@@ -141,7 +141,7 @@ This configuration uses the following key bindings organized by functionality:
 - `<C-e>` - Toggle Harpoon menu
 
 ### File Operations
-- `<leader>sf` - Find files (Telescope)
+- `f` - Find files (Telescope)
 - `<leader>sh` - Search help tags (Telescope)
 - `<leader>sk` - Search keymaps (Telescope)
 - `<leader>ss` - Telescope built-in (Telescope)
