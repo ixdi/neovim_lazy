@@ -6,14 +6,14 @@ return {
 		config = function()
 			require("conform").setup({
 				formatters_by_ft = {
-					javascript = { "biome" },
-					typescript = { "biome" },
-					javascriptreact = { "biome" },
-					typescriptreact = { "biome" },
-					json = { "jsonls" },
-					html = { "prettierd" },
-					css = { "prettierd" },
-					scss = { "prettierd" },
+					javascript = { "dprint" },
+					typescript = { "dprint" },
+					javascriptreact = { "dprint" },
+					typescriptreact = { "dprint" },
+					json = { "dprint" },
+					html = { "dprint" },
+					css = { "dprint" },
+					scss = { "dprint" },
 					-- markdown = { "prettierd" },
 					yaml = { "prettierd" },
 					lua = { "stylua" },

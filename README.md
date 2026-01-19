@@ -38,7 +38,6 @@ This configuration includes the following plugins organized by category:
 | [nvim-neo-tree/neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) | File explorer |
 | [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Fuzzy Finder |
 | [debugloop/telescope-undo.nvim](https://github.com/debugloop/telescope-undo.nvim) | Undo history navigation |
-| [ThePrimeagen/harpoon](https://github.com/ThePrimeagen/harpoon) | Quick file navigation |
 | [ggandor/leap.nvim](https://github.com/ggandor/leap.nvim) | Fast navigation within buffer |
 
 ### LSP & Diagnostics
@@ -130,15 +129,11 @@ This configuration uses the following key bindings organized by functionality:
 
 ### Navigation
 - `ee` - Toggle Neo-Tree reveal
-- `eb` - Neo-Tree buffers
-- `es` - Neo-Tree document symbols
-- `eg` - Neo-Tree git status
 - `,f` - Neo-Tree reveal
 - `f` - Leap forward (Leap.nvim)
 - `F` - Leap backward (Leap.nvim)
 - `]c`/`[c` - Navigate git hunks
 - `]]`/`[[` - Navigate word references (Illuminate)
-- `<C-e>` - Toggle Harpoon menu
 
 ### File Operations
 - `f` - Find files (Telescope)
@@ -185,6 +180,8 @@ This configuration uses the following key bindings organized by functionality:
 - `<leader>g` - Open LazyGit
 
 ### Buffer Management
+- `<S-l>` - Next buffer
+- `<S-h>` - Previous buffer
 - `<leader>bp` - Toggle buffer pin
 - `<leader>bP` - Delete non-pinned buffers
 - `<leader>bd` - Delete buffer
@@ -248,11 +245,6 @@ This configuration uses the following key bindings organized by functionality:
 - `<leader>fr` - Find and replace in files (Spectre)
 - `<leader>cd` - Generate code documentation
 - `<leader>run` - Run code snippets
-- `<leader>ha` - Add file to Harpoon
-- `<leader>hd` - Remove file from Harpoon
-- `<leader>hl` - Open Harpoon list
-- `<leader>hp` - Previous Harpoon file
-- `<leader>hn` - Next Harpoon file
 - `<leader>?` - Show buffer local keymaps (WhichKey)
 
 ### UI Controls
