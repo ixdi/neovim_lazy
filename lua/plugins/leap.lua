@@ -1,7 +1,7 @@
 return {
 	{
 		-- Find and position quickly in the current buffer
-		"ggandor/leap.nvim",
+		url = "https://codeberg.org/andyg/leap.nvim",
 		config = function()
 			vim.keymap.set({ "n", "x", "o" }, "**", "<Plug>(leap)")
 			vim.keymap.set("n", "F", "<Plug>(leap-from-window)")
