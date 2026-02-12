@@ -3,6 +3,9 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- views can only be fully collapsed with the global statusline
+vim.opt.laststatus = 3
+
 -- optionally enable 24-bit colour
 vim.opt.termguicolors = true
 
