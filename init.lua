@@ -9,3 +9,6 @@ require("core.options")
 
 -- Configs
 require("config.init")
+
+-- Gui
+require("config.gui")

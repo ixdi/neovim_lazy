@@ -1,7 +1,3 @@
--- luacheck: globals vim
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 local opts = {
 	backup = false, -- creates a backup file
 	clipboard = "unnamedplus", -- copy/paste to system clipboard
