@@ -1,36 +1,72 @@
 return {
 	{
-		-- Show color codes in the editor
-		"NvChad/nvim-colorizer.lua",
+		"catgoose/nvim-colorizer.lua",
+		event = "BufReadPre",
+		opts = {},
 		config = function()
 			require("colorizer").setup({
 				filetypes = { "*" },
-				user_default_options = {
-					RGB = true, -- #RGB hex codes
-					RRGGBB = true, -- #RRGGBB hex codes
-					names = true, -- "Name" codes like Blue or blue
-					RRGGBBAA = false, -- #RRGGBBAA hex codes
-					AARRGGBB = false, -- 0xAARRGGBB hex codes
-					rgb_fn = false, -- CSS rgb() and rgba() functions
-					hsl_fn = true, -- CSS hsl() and hsla() functions
-					css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-					css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-					-- Available modes for `mode`: foreground, background,  virtualtext
-					mode = "background", -- Set the display mode.
-					-- Available methods are false / true / "normal" / "lsp" / "both"
-					-- True is same as normal
-					tailwind = true, -- Enable tailwind colors
-					-- parsers can contain values used in |user_default_options|
-					sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
-					virtualtext = "■",
-					-- update color values even if buffer is not focused
-					-- example use: cmp_menu, cmp_docs
-					always_update = false,
-				},
-				-- all the sub-options of filetypes apply to buftypes
 				buftypes = {},
+				user_commands = true,
+				lazy_load = true,
+				options = {
+					parsers = {
+						css = true, -- preset: enables names, hex, rgb, hsl, oklch
+						css_fn = true, -- preset: enables rgb, hsl, oklch
+						names = {
+							enable = false,
+							lowercase = true,
+							camelcase = true,
+							uppercase = false,
+							strip_digits = false,
+							custom = false, -- table|function|false
+						},
+						hex = {
+							default = true, -- default value for format keys (see above)
+							rgb = true, -- #RGB
+							rgba = true, -- #RGBA
+							rrggbb = true, -- #RRGGBB
+							rrggbbaa = true, -- #RRGGBBAA
+							aarrggbb = true, -- 0xAARRGGBB
+						},
+						rgb = { enable = true },
+						hsl = { enable = true },
+						oklch = { enable = true },
+						tailwind = {
+							enable = true, -- parse Tailwind color names
+							lsp = true, -- use Tailwind LSP documentColor
+							update_names = true,
+						},
+						sass = {
+							enable = true,
+							parsers = { css = true },
+							variable_pattern = "^%$([%w_-]+)",
+						},
+						xterm = { enable = true },
+						custom = {},
+					},
+					display = {
+						mode = "background", -- "background"|"foreground"|"virtualtext"
+						background = {
+							bright_fg = "#000000",
+							dark_fg = "#ffffff",
+						},
+						virtualtext = {
+							char = "■",
+							position = "eol", -- "eol"|"before"|"after"
+							hl_mode = "foreground",
+						},
+						priority = {
+							default = 150, -- vim.hl.priorities.diagnostics
+							lsp = 200, -- vim.hl.priorities.user
+						},
+					},
+					hooks = {
+						should_highlight_line = false, -- function(line, bufnr, line_num) -> bool
+					},
+					always_update = true,
+				},
 			})
 		end,
-		event = "VeryLazy",
 	},
 }
