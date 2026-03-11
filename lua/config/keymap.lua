@@ -32,3 +32,6 @@ vim.keymap.set("v", ">", ">gv", { desc = "Increase indent" })
 
 -- Clear after search
 vim.keymap.set("n", ",m", "<cmd>nohl<cr>", { desc = "Clear highlights" })
+
+-- Update plugins via vim.pack
+vim.keymap.set("n", "<leader>pu", vim.pack.update, { desc = "Update plugins" })

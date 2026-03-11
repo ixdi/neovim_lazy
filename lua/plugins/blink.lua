@@ -1,7 +1,7 @@
 vim.pack.add({
 	{ src = "https://github.com/rafamadriz/friendly-snippets" },
 	{ src = "https://github.com/L3MON4D3/LuaSnip" },
-	{ src = "https://github.com/saghen/blink.cmp", version = "*" },
+	{ src = "https://github.com/saghen/blink.cmp" },
 })
 
 require("blink.cmp").setup({
@@ -43,7 +43,7 @@ require("blink.cmp").setup({
 	--
 	-- See the fuzzy documentation for more information
 	fuzzy = {
-		implementation = "prefer_rust",
+		implementation = "lua",
 		prebuilt_binaries = {
 			download = false, -- Automatically download prebuilt binaries when installing the plugin
 			ignore_version_mismatch = true, -- Ignore version mismatch when using prebuilt binaries
