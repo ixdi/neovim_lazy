@@ -10,7 +10,7 @@ end
 
 -- Blazingly fast way out of insert mode
 vim.keymap.set("i", "jj", "<esc>", { desc = "Exit insert mode" })
-vim.keymap.set("n", "<leader><leader>", vim.lsp.buf.hover, { desc = "Hover" })
+vim.keymap.set("n", "<Space><Space>", vim.lsp.buf.hover, { desc = "Hover" })
 
 -- Quick access to some common actions
 vim.keymap.set("n", ",w", "<cmd>w<cr>", { desc = "Write" })

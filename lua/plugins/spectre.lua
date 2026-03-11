@@ -18,6 +18,6 @@ require("spectre").setup({
 	},
 })
 
-vim.keymap.set("n", "<leader>fr", function()
+vim.keymap.set("n", "<Space>fr", function()
 	require("spectre").open()
 end, { desc = "Replace in files (Spectre)" })
