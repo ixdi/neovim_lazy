@@ -1,431 +1,271 @@
-return {
-	{
-		-- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
-		-- used for completion, annotations and signatures of Neovim apis
-		"folke/lazydev.nvim",
-		ft = "lua",
-		opts = {
-			library = {
-				-- Load luvit types when the `vim.uv` word is found
-				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
-			},
-		},
-	},
-	{
-		-- Main LSP Configuration
-		"neovim/nvim-lspconfig",
-		dependencies = {
-			-- Automatically install LSPs and related tools to stdpath for Neovim
-			-- Mason must be loaded before its dependents so we need to set it up here.
-			-- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
-			{ "mason-org/mason.nvim", opts = {} },
-			"mason-org/mason-lspconfig.nvim",
-			"WhoIsSethDaniel/mason-tool-installer.nvim",
+-- Brief aside: **What is LSP?**
+--
+-- LSP is an initialism you've probably heard, but might not understand what it is.
+--
+-- LSP stands for Language Server Protocol. It's a protocol that helps editors
+-- and language tooling communicate in a standardized fashion.
+--
+-- In general, you have a "server" which is some tool built to understand a particular
+-- language (such as `gopls`, `lua_ls`, `rust_analyzer`, etc.). These Language Servers
+-- (sometimes called LSP servers, but that's kind of like ATM Machine) are standalone
+-- processes that communicate with some "client" - in this case, Neovim!
+--
+-- LSP provides Neovim with features like:
+--  - Go to definition
+--  - Find references
+--  - Autocompletion
+--  - Symbol Search
+--  - and more!
+--
+-- Thus, Language Servers are external tools that must be installed separately from
+-- Neovim. This is where `mason` and related plugins come into play.
+--
+-- If you're wondering about lsp vs treesitter, you can check out the wonderfully
+-- and elegantly composed help section, `:help lsp-vs-treesitter`
 
-			-- Useful status updates for LSP.
-			{
-				"j-hui/fidget.nvim",
-				opts = {
-					-- Options related to LSP progress subsystem
-					progress = {
-						poll_rate = 0, -- How and when to poll for progress messages
-						suppress_on_insert = false, -- Suppress new messages while in insert mode
-						ignore_done_already = false, -- Ignore new tasks that are already complete
-						ignore_empty_message = false, -- Ignore new tasks that don't contain a message
-						-- Clear notification group when LSP server detaches
-						clear_on_detach = function(client_id)
-							local client = vim.lsp.get_client_by_id(client_id)
-							return client and client.name or nil
-						end,
-						-- How to get a progress message's notification group key
-						notification_group = function(msg)
-							return msg.lsp_client.name
-						end,
-						ignore = {}, -- List of LSP servers to ignore
+-- Useful status updates for LSP.
+-- vim.pack.add({
+-- 	{ src = "https://github.com/j-hui/fidget.nvim" }
+-- })
+--
+-- require("fidget").setup({
+-- 		-- Options related to LSP progress subsystem
+-- 		progress = {
+-- 			poll_rate = 0, -- How and when to poll for progress messages
+-- 			suppress_on_insert = false, -- Suppress new messages while in insert mode
+-- 			ignore_done_already = false, -- Ignore new tasks that are already complete
+-- 			ignore_empty_message = false, -- Ignore new tasks that don't contain a message
+-- 			-- Clear notification group when LSP server detaches
+-- 			clear_on_detach = function(client_id)
+-- 				local client = vim.lsp.get_client_by_id(client_id)
+-- 				return client and client.name or nil
+-- 			end,
+-- 			-- How to get a progress message's notification group key
+-- 			notification_group = function(msg)
+-- 				return msg.lsp_client.name
+-- 			end,
+-- 			ignore = {}, -- List of LSP servers to ignore
+--
+-- 			-- Options related to how LSP progress messages are displayed as notifications
+-- 			display = {
+-- 				render_limit = 16, -- How many LSP messages to show at once
+-- 				done_ttl = 3, -- How long a message should persist after completion
+-- 				done_icon = "✔", -- Icon shown when all LSP progress tasks are complete
+-- 				done_style = "Constant", -- Highlight group for completed LSP tasks
+-- 				progress_ttl = math.huge, -- How long a message should persist when in progress
+-- 				-- Icon shown when LSP progress tasks are in progress
+-- 				progress_icon = { "dots" },
+-- 				-- Highlight group for in-progress LSP tasks
+-- 				progress_style = "WarningMsg",
+-- 				group_style = "Title", -- Highlight group for group name (LSP server name)
+-- 				icon_style = "Question", -- Highlight group for group icons
+-- 				priority = 30, -- Ordering priority for LSP notification group
+-- 				skip_history = true, -- Whether progress notifications should be omitted from history
+-- 				-- How to format a progress annotation
+-- 				format_annote = function(msg)
+-- 					return msg.title
+-- 				end,
+-- 				-- How to format a progress notification group's name
+-- 				format_group_name = function(group)
+-- 					return tostring(group)
+-- 				end,
+-- 				overrides = { -- Override options from the default notification config
+-- 					rust_analyzer = { name = "rust-analyzer" },
+-- 				},
+-- 			},
+--
+-- 			-- Options related to Neovim's built-in LSP client
+-- 			lsp = {
+-- 				progress_ringbuf_size = 0, -- Configure the nvim's LSP progress ring buffer size
+-- 				log_handler = false, -- Log `$/progress` handler invocations (for debugging)
+-- 			},
+-- 		},
+--
+-- 		-- Options related to notification subsystem
+-- 		notification = {
+-- 			poll_rate = 10, -- How frequently to update and render notifications
+-- 			filter = vim.log.levels.INFO, -- Minimum notifications level
+-- 			history_size = 128, -- Number of removed messages to retain in history
+-- 			override_vim_notify = false, -- Automatically override vim.notify() with Fidget
+-- 			-- Conditionally redirect notifications to another backend
+-- 			redirect = function(msg, level, opts)
+-- 				if opts and opts.on_open then
+-- 					return require("fidget.integration.nvim-notify").delegate(msg, level, opts)
+-- 				end
+-- 			end,
+--
+-- 			-- Options related to how notifications are rendered as text
+-- 			view = {
+-- 				stack_upwards = true, -- Display notification items from bottom to top
+-- 				align = "message", -- Indent messages longer than a single line
+-- 				reflow = false, -- Reflow (wrap) messages wider than notification window
+-- 				icon_separator = " ", -- Separator between group name and icon
+-- 				group_separator = "---", -- Separator between notification groups
+-- 				-- Highlight group used for group separator
+-- 				group_separator_hl = "Comment",
+-- 				line_margin = 1, -- Spaces to pad both sides of each non-empty line
+-- 				-- How to render notification messages
+-- 				render_message = function(msg, cnt)
+-- 					return cnt == 1 and msg or string.format("(%dx) %s", cnt, msg)
+-- 				end,
+-- 			},
+--
+-- 			-- Options related to the notification window and buffer
+-- 			window = {
+-- 				normal_hl = "Comment", -- Base highlight group in the notification window
+-- 				winblend = 100, -- Background color opacity in the notification window
+-- 				border = "none", -- Border around the notification window
+-- 				zindex = 45, -- Stacking priority of the notification window
+-- 				max_width = 0, -- Maximum width of the notification window
+-- 				max_height = 0, -- Maximum height of the notification window
+-- 				x_padding = 1, -- Padding from right edge of window boundary
+-- 				y_padding = 0, -- Padding from bottom edge of window boundary
+-- 				align = "bottom", -- How to align the notification window
+-- 				relative = "editor", -- What the notification window position is relative to
+-- 				tabstop = 8, -- Width of each tab character in the notification window
+-- 				avoid = { "NvimTree" }, -- Filetypes the notification window should avoid
+-- 				-- e.g., { "aerial", "NvimTree", "neotest-summary" }
+-- 			},
+-- 		},
+--
+-- 		-- Options related to logging
+-- 		logger = {
+-- 			level = vim.log.levels.WARN, -- Minimum logging level
+-- 			max_size = 10000, -- Maximum log file size, in KB
+-- 			float_precision = 0.01, -- Limit the number of decimals displayed for floats
+-- 			-- Where Fidget writes its logs to
+-- 			path = string.format("%s/fidget.nvim.log", vim.fn.stdpath("cache")),
+-- 		},
+-- })
+--
+-- -- These GLOBAL keymaps are created unconditionally when Nvim starts:
+-- -- "gra" (Normal and Visual mode) is mapped to vim.lsp.buf.code_action()
+-- -- "gri" is mapped to vim.lsp.buf.implementation()
+-- -- "grn" is mapped to vim.lsp.buf.rename()
+-- -- "grr" is mapped to vim.lsp.buf.references()
+-- -- "grt" is mapped to vim.lsp.buf.type_definition()
+-- -- "gO" is mapped to vim.lsp.buf.document_symbol()
+-- -- CTRL-S (Insert mode) is mapped to vim.lsp.buf.signature_help()
+-- -- v_an and v_in fall back to vim.lsp.buf.selection_range() when buffer has no treesitter parser
+--
+-- --  This function gets run when an LSP attaches to a particular buffer.
+-- --    That is to say, every time a new file is opened that is associated with
+-- --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
+-- --    function will be executed to configure the current buffer
+--
+-- -- Diagnostic Config
+-- -- See :help vim.diagnostic.Opts
+-- vim.diagnostic.config({
+-- 	severity_sort = true,
+-- 	float = { border = "rounded", source = "if_many" },
+-- 	underline = { severity = vim.diagnostic.severity.ERROR },
+-- 	signs = vim.g.have_nerd_font and {
+-- 		text = {
+-- 			[vim.diagnostic.severity.ERROR] = "󰅚 ",
+-- 			[vim.diagnostic.severity.WARN] = "󰀪 ",
+-- 			[vim.diagnostic.severity.INFO] = "󰋽 ",
+-- 			[vim.diagnostic.severity.HINT] = "󰌶 ",
+-- 		},
+-- 	} or {},
+-- 	virtual_text = {
+-- 		source = "if_many",
+-- 		spacing = 2,
+-- 		format = function(diagnostic)
+-- 			local diagnostic_message = {
+-- 				[vim.diagnostic.severity.ERROR] = diagnostic.message,
+-- 				[vim.diagnostic.severity.WARN] = diagnostic.message,
+-- 				[vim.diagnostic.severity.INFO] = diagnostic.message,
+-- 				[vim.diagnostic.severity.HINT] = diagnostic.message,
+-- 			}
+-- 			return diagnostic_message[diagnostic.severity]
+-- 		end,
+-- 	},
+-- })
 
-						-- Options related to how LSP progress messages are displayed as notifications
-						display = {
-							render_limit = 16, -- How many LSP messages to show at once
-							done_ttl = 3, -- How long a message should persist after completion
-							done_icon = "✔", -- Icon shown when all LSP progress tasks are complete
-							done_style = "Constant", -- Highlight group for completed LSP tasks
-							progress_ttl = math.huge, -- How long a message should persist when in progress
-							-- Icon shown when LSP progress tasks are in progress
-							progress_icon = { "dots" },
-							-- Highlight group for in-progress LSP tasks
-							progress_style = "WarningMsg",
-							group_style = "Title", -- Highlight group for group name (LSP server name)
-							icon_style = "Question", -- Highlight group for group icons
-							priority = 30, -- Ordering priority for LSP notification group
-							skip_history = true, -- Whether progress notifications should be omitted from history
-							-- How to format a progress annotation
-							format_annote = function(msg)
-								return msg.title
-							end,
-							-- How to format a progress notification group's name
-							format_group_name = function(group)
-								return tostring(group)
-							end,
-							overrides = { -- Override options from the default notification config
-								rust_analyzer = { name = "rust-analyzer" },
-							},
-						},
+-- Main LSP Configuration
+vim.pack.add({
+  { src = 'https://github.com/neovim/nvim-lspconfig' },
+})
 
-						-- Options related to Neovim's built-in LSP client
-						lsp = {
-							progress_ringbuf_size = 0, -- Configure the nvim's LSP progress ring buffer size
-							log_handler = false, -- Log `$/progress` handler invocations (for debugging)
-						},
-					},
+-- Enable the following language servers
+--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
+vim.pack.add({
+  { src = "https://github.com/mason-org/mason.nvim" },
+  { src = "https://github.com/mason-org/mason-lspconfig.nvim" }
+})
 
-					-- Options related to notification subsystem
-					notification = {
-						poll_rate = 10, -- How frequently to update and render notifications
-						filter = vim.log.levels.INFO, -- Minimum notifications level
-						history_size = 128, -- Number of removed messages to retain in history
-						override_vim_notify = false, -- Automatically override vim.notify() with Fidget
-						-- Conditionally redirect notifications to another backend
-						redirect = function(msg, level, opts)
-							if opts and opts.on_open then
-								return require("fidget.integration.nvim-notify").delegate(msg, level, opts)
-							end
-						end,
-
-						-- Options related to how notifications are rendered as text
-						view = {
-							stack_upwards = true, -- Display notification items from bottom to top
-							align = "message", -- Indent messages longer than a single line
-							reflow = false, -- Reflow (wrap) messages wider than notification window
-							icon_separator = " ", -- Separator between group name and icon
-							group_separator = "---", -- Separator between notification groups
-							-- Highlight group used for group separator
-							group_separator_hl = "Comment",
-							line_margin = 1, -- Spaces to pad both sides of each non-empty line
-							-- How to render notification messages
-							render_message = function(msg, cnt)
-								return cnt == 1 and msg or string.format("(%dx) %s", cnt, msg)
-							end,
-						},
-
-						-- Options related to the notification window and buffer
-						window = {
-							normal_hl = "Comment", -- Base highlight group in the notification window
-							winblend = 100, -- Background color opacity in the notification window
-							border = "none", -- Border around the notification window
-							zindex = 45, -- Stacking priority of the notification window
-							max_width = 0, -- Maximum width of the notification window
-							max_height = 0, -- Maximum height of the notification window
-							x_padding = 1, -- Padding from right edge of window boundary
-							y_padding = 0, -- Padding from bottom edge of window boundary
-							align = "bottom", -- How to align the notification window
-							relative = "editor", -- What the notification window position is relative to
-							tabstop = 8, -- Width of each tab character in the notification window
-							avoid = { "NvimTree" }, -- Filetypes the notification window should avoid
-							-- e.g., { "aerial", "NvimTree", "neotest-summary" }
-						},
-					},
-
-					-- Options related to logging
-					logger = {
-						level = vim.log.levels.WARN, -- Minimum logging level
-						max_size = 10000, -- Maximum log file size, in KB
-						float_precision = 0.01, -- Limit the number of decimals displayed for floats
-						-- Where Fidget writes its logs to
-						path = string.format("%s/fidget.nvim.log", vim.fn.stdpath("cache")),
-					},
-				},
-			},
-
-			-- Allows extra capabilities provided by blink.cmp
-			"saghen/blink.cmp",
-		},
-		config = function()
-			-- Brief aside: **What is LSP?**
-			--
-			-- LSP is an initialism you've probably heard, but might not understand what it is.
-			--
-			-- LSP stands for Language Server Protocol. It's a protocol that helps editors
-			-- and language tooling communicate in a standardized fashion.
-			--
-			-- In general, you have a "server" which is some tool built to understand a particular
-			-- language (such as `gopls`, `lua_ls`, `rust_analyzer`, etc.). These Language Servers
-			-- (sometimes called LSP servers, but that's kind of like ATM Machine) are standalone
-			-- processes that communicate with some "client" - in this case, Neovim!
-			--
-			-- LSP provides Neovim with features like:
-			--  - Go to definition
-			--  - Find references
-			--  - Autocompletion
-			--  - Symbol Search
-			--  - and more!
-			--
-			-- Thus, Language Servers are external tools that must be installed separately from
-			-- Neovim. This is where `mason` and related plugins come into play.
-			--
-			-- If you're wondering about lsp vs treesitter, you can check out the wonderfully
-			-- and elegantly composed help section, `:help lsp-vs-treesitter`
-
-			--  This function gets run when an LSP attaches to a particular buffer.
-			--    That is to say, every time a new file is opened that is associated with
-			--    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
-			--    function will be executed to configure the current buffer
-			vim.api.nvim_create_autocmd("LspAttach", {
-				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
-				callback = function(event)
-					-- NOTE: Remember that Lua is a real programming language, and as such it is possible
-					-- to define small helper and utility functions so you don't have to repeat yourself.
-					--
-					-- In this case, we create a function that lets us more easily define mappings specific
-					-- for LSP related items. It sets the mode, buffer and description for us each time.
-					local map = function(keys, func, desc, mode)
-						mode = mode or "n"
-						vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
-					end
-
-					-- Show under cursor info
-					map("<leader><leader>", vim.lsp.buf.hover, "[L]SP [H]over")
-
-					-- Rename the variable under your cursor.
-					--  Most Language Servers support renaming across files, etc.
-					map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-
-					-- Execute a code action, usually your cursor needs to be on top of an error
-					-- or a suggestion from your LSP for this to activate.
-					map("<leader>a", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
-
-					-- Find references for the word under your cursor.
-					map("<leader>r", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-
-					-- Jump to the implementation of the word under your cursor.
-					--  Useful when your language has ways of declaring types without an actual implementation.
-					map("<leader>i", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-
-					-- Jump to the definition of the word under your cursor.
-					--  This is where a variable was first declared, or where a function is defined, etc.
-					--  To jump back, press <C-t>.
-					map("<leader>d", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-
-					-- WARN: This is not Goto Definition, this is Goto Declaration.
-					--  For example, in C this would take you to the header.
-					map("<leader>dd", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-
-					-- Fuzzy find all the symbols in your current document.
-					--  Symbols are things like variables, functions, types, etc.
-					map("gO", require("telescope.builtin").lsp_document_symbols, "Open Document Symbols")
-
-					-- Fuzzy find all the symbols in your current workspace.
-					--  Similar to document symbols, except searches over your entire project.
-					map("gW", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Open Workspace Symbols")
-
-					-- Jump to the type of the word under your cursor.
-					--  Useful when you're not sure what type a variable is and you want to see
-					--  the definition of its *type*, not where it was *defined*.
-					map("<leader>dt", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype Definition")
-
-					-- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
-					---@param client vim.lsp.Client
-					---@param method vim.lsp.protocol.Method
-					---@param bufnr? integer some lsp support methods only in specific files
-					---@return boolean
-					local function client_supports_method(client, method, bufnr)
-						if vim.fn.has("nvim-0.11") == 1 then
-							return client:supports_method(method, bufnr)
-						else
-							return client.supports_method(method, { bufnr = bufnr })
-						end
-					end
-
-					-- The following two autocommands are used to highlight references of the
-					-- word under your cursor when your cursor rests there for a little while.
-					--    See `:help CursorHold` for information about when this is executed
-					--
-					-- When you move your cursor, the highlights will be cleared (the second autocommand).
-					local client = vim.lsp.get_client_by_id(event.data.client_id)
-					if
-						client
-						and client_supports_method(
-							client,
-							vim.lsp.protocol.Methods.textDocument_documentHighlight,
-							event.buf
-						)
-					then
-						local highlight_augroup =
-							vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
-						vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-							buffer = event.buf,
-							group = highlight_augroup,
-							callback = vim.lsp.buf.document_highlight,
-						})
-
-						vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-							buffer = event.buf,
-							group = highlight_augroup,
-							callback = vim.lsp.buf.clear_references,
-						})
-
-						vim.api.nvim_create_autocmd("LspDetach", {
-							group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
-							callback = function(event2)
-								vim.lsp.buf.clear_references()
-								vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
-							end,
-						})
-					end
-
-					-- The following code creates a keymap to toggle inlay hints in your
-					-- code, if the language server you are using supports them
-					--
-					-- This may be unwanted, since they displace some of your code
-					if
-						client
-						and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf)
-					then
-						map("<leader>th", function()
-							vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
-						end, "[T]oggle Inlay [H]ints")
-					end
-				end,
-			})
-
-			-- Diagnostic Config
-			-- See :help vim.diagnostic.Opts
-			vim.diagnostic.config({
-				severity_sort = true,
-				float = { border = "rounded", source = "if_many" },
-				underline = { severity = vim.diagnostic.severity.ERROR },
-				signs = vim.g.have_nerd_font and {
-					text = {
-						[vim.diagnostic.severity.ERROR] = "󰅚 ",
-						[vim.diagnostic.severity.WARN] = "󰀪 ",
-						[vim.diagnostic.severity.INFO] = "󰋽 ",
-						[vim.diagnostic.severity.HINT] = "󰌶 ",
-					},
-				} or {},
-				virtual_text = {
-					source = "if_many",
-					spacing = 2,
-					format = function(diagnostic)
-						local diagnostic_message = {
-							[vim.diagnostic.severity.ERROR] = diagnostic.message,
-							[vim.diagnostic.severity.WARN] = diagnostic.message,
-							[vim.diagnostic.severity.INFO] = diagnostic.message,
-							[vim.diagnostic.severity.HINT] = diagnostic.message,
-						}
-						return diagnostic_message[diagnostic.severity]
-					end,
-				},
-			})
-
-			-- LSP servers and clients are able to communicate to each other what features they support.
-			--  By default, Neovim doesn't support everything that is in the LSP specification.
-			--  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
-			--  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
-			local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-			-- Enable the following language servers
-			--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-			--
-			--  Add any additional override configuration in the following tables. Available keys are:
-			--  - cmd (table): Override the default command used to start the server
-			--  - filetypes (table): Override the default list of associated filetypes for the server
-			--  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-			--  - settings (table): Override the default settings passed when initializing the server.
-			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-			local servers = {
-				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-				--
-				-- Some languages (like typescript) have entire language plugins that can be useful:
-				--    https://github.com/pmizio/typescript-tools.nvim
-				--
-				-- But for many setups, the LSP (`ts_ls`) will work just fine
-				lua_ls = {
-					-- cmd = { ... },
-					-- filetypes = { ... },
-					-- capabilities = {},
-					settings = {
-						Lua = {
-							completion = {
-								callSnippet = "Replace",
-							},
-							-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-							-- diagnostics = { disable = { 'missing-fields' } },
-						},
-					},
-				},
-			}
-
-			-- Ensure the servers and tools above are installed
-			--
-			-- To check the current status of installed tools and/or manually install
-			-- other tools, you can run
-			--    :Mason
-			--
-			-- You can press `g?` for help in this menu.
-			--
-			-- `mason` had to be setup earlier: to configure its options see the
-			-- `dependencies` table for `nvim-lspconfig` above.
-			--
-			-- You can add other tools here that you want Mason to install
-			-- for you, so that they are available from within Neovim.
-			local ensure_installed = vim.tbl_keys(servers or {})
-			vim.list_extend(ensure_installed, {
-				"ansiblels",
-				"autoflake",
-				"bashls",
-				"biome",
-				"black",
-				"commitlint",
-				"cssls",
-				"cspell",
-				"cucumber_language_server",
-				"docker_compose_language_service",
-				"dockerls",
-				"dprint",
-				"editorconfig-checker",
-				"eslint_d",
-				"flake8",
-				"html",
-				"intelephense",
-				"isort",
-				"jinja_lsp",
-				"jsonls",
-				"lua_ls",
-				"markdown_oxide",
-				"marksman",
-				"mypy",
-				"prettierd",
-				"pydocstyle",
-				"pyflakes",
-				"pylsp",
-				"ruff",
-				"rust_analyzer",
-				"semgrep",
-				"shellcheck",
-				"stylelint_lsp",
-				"stylua",
-				"tailwindcss",
-				"terraformls",
-				"tinymist",
-				"write-good",
-				"yamlls",
-				"yapf",
-			})
-			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-
-			require("mason-lspconfig").setup({
-				ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-				automatic_installation = false,
-				handlers = {
-					function(server_name)
-						local server = servers[server_name] or {}
-						-- This handles overriding only values explicitly passed
-						-- by the server configuration above. Useful when disabling
-						-- certain features of an LSP (for example, turning off formatting for ts_ls)
-						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						require("lspconfig")[server_name].setup(server)
-					end,
-				},
-			})
-		end,
-	},
-}
+require("mason").setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
+require("mason-lspconfig").setup({
+    automatic_enable = {
+      "bashls",
+      "biome",
+      "cssls",
+      "cucumber_language_server",
+      "docker_compose_language_service",
+      "dockerls",
+      "dprint",
+      "eslint",
+      "html",
+      "intelephense",
+      "jsonls",
+      "lua_ls",
+      "markdown_oxide",
+      "marksman",
+      "pylsp",
+      "ruff",
+      "rust_analyzer",
+      "stylelint_lsp",
+      "stylua",
+      "tailwindcss-language-server",
+    }
+})
+-- You can add other tools here that you want Mason to install
+-- for you, so that they are available from within Neovim.
+	-- "ansiblels",
+	-- "autoflake",
+	-- "bashls",
+	-- "biome",
+	-- "black",
+	-- "commitlint",
+	-- "cssls",
+	-- "cspell",
+	-- "cucumber_language_server",
+	-- "docker_compose_language_service",
+	-- "dockerls",
+	-- "dprint",
+	-- "editorconfig-checker",
+	-- "eslint_d",
+	-- "flake8",
+	-- "html",
+	-- "intelephense",
+	-- "isort",
+	-- "jinja_lsp",
+	-- "jsonls",
+	-- "lua_ls",
+	-- "markdown_oxide",
+	-- "marksman",
+	-- "mypy",
+	-- "prettierd",
+	-- "pydocstyle",
+	-- "pyflakes",
+	-- "pylsp",
+	-- "ruff",
+	-- "rust_analyzer",
+	-- "semgrep",
+	-- "shellcheck",
+	-- "stylelint_lsp",
+	-- "stylua",
+	-- "tailwindcss",
+	-- "terraformls",
+	-- "tinymist",
+	-- "write-good",
+	-- "yamlls",
+	-- "yapf",

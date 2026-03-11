@@ -1,12 +1,4 @@
--- views can only be fully collapsed with the global statusline
-vim.opt.laststatus = 3
-
--- optionally enable 24-bit colour
-vim.opt.termguicolors = true
-
 local M = {}
-
-M.lazy_version = ">=11.0"
 
 -- icons used by other plugins
 M.icons = {

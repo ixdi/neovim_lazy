@@ -1,14 +1,37 @@
--- Handle plugins with lazy.nvim
-require("core.lazy")
-
--- General Neovim keymaps
-require("core.keymaps")
-
--- Other options
-require("core.options")
-
--- Configs
-require("config.init")
-
--- Gui
+require("config.globals")
+require("config.options")
+require("config.keymap")
+require("config.autocmd")
 require("config.gui")
+require("plugins.themes")
+require("config.colorscheme")
+
+require("plugins.treesitter")
+require("plugins.nvim-tree")
+require("plugins.autopairs")
+require("plugins.blink")
+require("plugins.bufferline")
+require("plugins.close-unused-buffers")
+require("plugins.colorizer")
+require("plugins.comments")
+require("plugins.conform")
+require("plugins.copilot")
+require("plugins.lsp")
+require("plugins.lua-snippets")
+require("plugins.gitsigns")
+require("plugins.illuminate")
+require("plugins.indent-blankline")
+require("plugins.indent-scope")
+require("plugins.lazygit")
+require("plugins.lualine")
+require("plugins.markdown")
+require("plugins.miniclue")
+require("plugins.multicursors")
+require("plugins.neogen")
+require("plugins.notifications")
+require("plugins.spectre")
+require("plugins.surround")
+require("plugins.telescope")
+require("plugins.terminal")
+require("plugins.yanky")
+require("plugins.typescript")
