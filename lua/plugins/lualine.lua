@@ -5,7 +5,7 @@ vim.pack.add({
 	{ src = "git@github.com:SmiteshP/nvim-navic.git" },
 })
 
-local icons = require("config").icons
+local icons = require("config.defaults").icons
 require("lualine").setup({
 	options = {
 		theme = "nordic",

@@ -77,7 +77,7 @@
       "src": "https://github.com/iamcco/markdown-preview.nvim"
     },
     "mason-lspconfig.nvim": {
-      "rev": "a324581a3c83fdacdb9804b79de1cbe00ce18550",
+      "rev": "a676ab7282da8d651e175118bcf54483ca11e46d",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim"
     },
     "mason.nvim": {
@@ -213,7 +213,7 @@
       "src": "https://github.com/ixdi/vim-snippets"
     },
     "yanky.nvim": {
-      "rev": "9d3caea67cf183639d4e510d34f2d58b6109abdd",
+      "rev": "784188e0a7363e762e53140f39124d786aec0832",
       "src": "https://github.com/gbprod/yanky.nvim"
     }
   }

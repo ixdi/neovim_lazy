@@ -43,7 +43,7 @@ vim.pack.add({
 	{ src = "https://github.com/mason-org/mason-lspconfig.nvim" },
 })
 
-local icons_default = require("config.init").icons
+local icons_default = require("config.defaults").icons
 
 vim.diagnostic.config({
 	signs = {

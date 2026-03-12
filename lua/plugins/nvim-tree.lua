@@ -16,7 +16,7 @@ local function key_shortcuts(bufnr)
 	vim.keymap.set("n", "R", api.tree.reload, { desc = "Reload" })
 end
 
-local icons = require("config").icons
+local icons = require("config.defaults").icons
 
 require("nvim-tree").setup({
 	view = { adaptive_size = true },

@@ -51,14 +51,14 @@ require("blink.cmp").setup({
 	},
 })
 
-local hooks = function(ev)
-	-- Use available |event-data|
-	local name, kind = ev.data.spec.name, ev.data.kind
-	-- Run build script after plugin's code has changed
-	if name == "blink.cmp" and (kind == "install" or kind == "update") then
-		-- Append `:wait()` if you need synchronous execution
-		vim.system({ "cargo build --release" }, { cwd = ev.data.path })
-	end
-end
-
-vim.api.nvim_create_autocmd("PackChanged", { callback = hooks })
+vim.api.nvim_create_autocmd("PackChanged", {
+	desc = "Run cargo build after pack changes",
+	group = vim.api.nvim_create_augroup("BlinkCmpPackChanged", { clear = true }),
+	callback = function(event)
+		local name, kind = event.data.spec.name, event.data.kind
+		if name == "blink.cmp" and (kind == "install" or kind == "update") then
+			vim.system({ "cargo build --release" }, { cwd = event.data.path })
+			vim.notify("blink.cmp installed, running build...", vim.log.levels.INFO)
+		end
+	end,
+})

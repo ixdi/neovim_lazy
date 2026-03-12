@@ -1,4 +1,4 @@
-local icons = require("config").icons.git
+local icons = require("config.defaults").icons.git
 
 -- git signs highlights text that has changed since the list
 -- git commit, and also lets you interactively stage & unstage
