@@ -102,45 +102,18 @@ require("mason-lspconfig").setup({
 		"tailwindcss-language-server",
 	},
 })
--- You can add other tools here that you want Mason to install
--- for you, so that they are available from within Neovim.
--- "ansiblels",
--- "autoflake",
--- "bashls",
--- "biome",
--- "black",
--- "commitlint",
--- "cssls",
--- "cspell",
--- "cucumber_language_server",
--- "docker_compose_language_service",
--- "dockerls",
--- "dprint",
--- "editorconfig-checker",
--- "eslint_d",
--- "flake8",
--- "html",
--- "intelephense",
--- "isort",
--- "jinja_lsp",
--- "jsonls",
--- "lua_ls",
--- "markdown_oxide",
--- "marksman",
--- "mypy",
--- "prettierd",
--- "pydocstyle",
--- "pyflakes",
--- "pylsp",
--- "ruff",
--- "rust_analyzer",
--- "semgrep",
--- "shellcheck",
--- "stylelint_lsp",
--- "stylua",
--- "tailwindcss",
--- "terraformls",
--- "tinymist",
--- "write-good",
--- "yamlls",
--- "yapf",
+
+vim.api.nvim_create_autocommand("PackChanged", {
+	desc = "Re-run make install_jsregex after pack changes",
+	group = vim.api.nvim_create_augroup("LuaSnipPackChanged", { clear = true }),
+	callback = function(ev)
+		if ev.data.kind == "update" then
+			vim.notify("Mason updating...", vim.log.levels.INFO)
+			---@diagnostic disable-next-line: param-type-mismatch
+			local ok = pcall(vim.cmd, "MasonUpdate")
+			if not ok then
+				vim.notify("Failed to run MasonUpdate", vim.log.levels.WARN)
+			end
+		end
+	end,
+})

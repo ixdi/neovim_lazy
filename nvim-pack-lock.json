@@ -13,7 +13,7 @@
       "src": "https://github.com/goolord/alpha-nvim.git"
     },
     "blink.cmp": {
-      "rev": "ec05b2de21a961157db0c9a19c7e21adf97c320b",
+      "rev": "f22f66eb7c4d037ed523a78b27ee235b7bc9a1f4",
       "src": "https://github.com/saghen/blink.cmp"
     },
     "bufferline.nvim": {
@@ -153,7 +153,7 @@
       "src": "https://github.com/nvim-pack/nvim-spectre"
     },
     "nvim-tree.lua": {
-      "rev": "e1ad8b96834779b4c2674ef83be3f1a4ed007358",
+      "rev": "9197f3ee3f0c9a754aab5b16500db6d7da5f68fd",
       "src": "https://github.com/nvim-tree/nvim-tree.lua"
     },
     "nvim-treesitter": {
