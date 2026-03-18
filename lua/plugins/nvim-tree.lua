@@ -10,8 +10,8 @@ local function key_shortcuts(bufnr)
 	api.config.mappings.default_on_attach(bufnr)
 
 	-- custom mappings
-	vim.keymap.set("n", "v", api.node.open.vertical, { desc = "Vertical Split" })
-	vim.keymap.set("n", "V", api.node.open.horizontal, { desc = "Horizontal Split" })
+	vim.keymap.set("n", "+", api.node.open.vertical, { desc = "Vertical Split" })
+	vim.keymap.set("n", "-", api.node.open.horizontal, { desc = "Horizontal Split" })
 	vim.keymap.set("n", "<space>", api.node.open.edit, { desc = "Open" })
 	vim.keymap.set("n", "R", api.tree.reload, { desc = "Reload" })
 end
