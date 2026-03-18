@@ -6,14 +6,14 @@ vim.pack.add({
 
 require("conform").setup({
 	formatters_by_ft = {
-		javascript = { "dprint" },
-		typescript = { "dprint" },
-		javascriptreact = { "dprint" },
-		typescriptreact = { "dprint" },
-		json = { "dprint" },
+		javascript = { "biome" },
+		typescript = { "biome" },
+		javascriptreact = { "biome" },
+		typescriptreact = { "biome" },
+		json = { "biome" },
 		html = { "superhtml" },
-		css = { "dprint" },
-		scss = { "dprint" },
+		css = { "biome" },
+		scss = { "biome" },
 		markdown = { "prettierd" },
 		yaml = { "prettierd" },
 		lua = { "stylua" },

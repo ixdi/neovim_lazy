@@ -86,7 +86,6 @@ require("mason-lspconfig").setup({
 		"cucumber_language_server",
 		"docker_compose_language_service",
 		"dockerls",
-		"dprint",
 		"eslint",
 		"intelephense",
 		"jsonls",
