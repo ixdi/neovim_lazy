@@ -176,8 +176,8 @@ This configuration includes the following plugins organized by category:
 | `ee`      | Normal        | Toggle nvim-tree |
 | `,f`      | Normal        | Focus nvim-tree  |
 | `<space>` | Normal (tree) | Open file        |
-| `+`       | Normal (tree) | Vertical split   |
-| `-`       | Normal (tree) | Horizontal split |
+| `v`       | Normal (tree) | Vertical split   |
+| `V`       | Normal (tree) | Horizontal split |
 | `R`       | Normal (tree) | Reload tree      |
 
 ### Git (gitsigns)
