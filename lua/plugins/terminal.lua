@@ -1,6 +1,6 @@
 -- Modern terminal management plugin for Neovim
 vim.pack.add({
-	{ src = "https://github.com/akinsho/toggleterm.nvim" },
+	{ src = "https://github.com/waiting-for-dev/toggleterm.nvim", branch = "waiting-for-dev/wop" },
 })
 
 require("toggleterm").setup()
